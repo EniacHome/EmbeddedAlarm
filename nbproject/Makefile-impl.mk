@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=EmbeddedAlarm.X
+PROJECTNAME=EmbeddedAlarm
 
 # Active Configuration
 DEFAULTCONF=default
