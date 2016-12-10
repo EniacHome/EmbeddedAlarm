@@ -20,13 +20,13 @@ void UART_Write_Text(char *text);
 void UART_Write(char date);
 
 int main(int argc, char** argv) {    
-    initializePIC();
+    initializePIC();            //Initialize the PIC
     
-    ADCON0bits.GO = 1;  //Start AD Conversion
-    //asm("SLEEP");       //Enter sleep mode
-    while (1);          //Infinite loop
+    ADCON0bits.GO = 1;          //Start AD Conversion
+    //asm("SLEEP");             //Enter sleep mode
+    while (1);                  //Infinite loop
     
-    return (EXIT_SUCCESS);
+    return (EXIT_SUCCESS);      
 }
 
 void UART_Write(char data)
@@ -169,7 +169,7 @@ void interrupt ISR(void) {
     
     //Contact sensor 2 interrupt handler
     if(IOCAFbits.IOCAF5){
-        UART_Write_Text("Contact sensor 1 had been disconnected.\n");   //Send the message to the UART_Write_Text procedure
+        UART_Write_Text("Contact sensor 2 had been disconnected.\n");   //Send the message to the UART_Write_Text procedure
         IOCAFbits.IOCAF5 = 0;                                           //Clear the Interrupt_On_Change bit 3 flag 
     }
     
