@@ -6,7 +6,6 @@
  * Created on August 19, 2016, 2:24 PM
  */
 
-
 #ifndef __XTAL_FREQ
 #define _XTAL_FREQ 500000
 #endif
@@ -17,6 +16,8 @@
 #define SWITCH PORTAbits.RA2
 
 #include "config.h"
+#include "sensor.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <xc.h>
@@ -24,24 +25,10 @@
 void initializePIC(void);
 void initializeSensors(void);
 void autoBaud(void);
-char get_port_pin(unsigned char *port, unsigned char pin);
 void default_handler(void);
 void switch_handler(void);
 void UART_Write_Text(char *text);
 void UART_Write(char date);
-
-typedef struct debounce_t {
-    unsigned char shouldDebounce     : 1;
-    unsigned char previousState      : 1;
-    void (*handler)(void);
-} Debounce;
-
-typedef struct sensor_t{
-    unsigned char index;
-    unsigned char *port;
-    unsigned char pin;
-    Debounce debounce;
-} Sensor;
 
 Sensor sensors[SENSOR_COUNT];
 char shouldAutoBaud = 0;
@@ -59,7 +46,7 @@ int main(void) {
             shouldAutoBaud = 0;         // AutoBaud succeeded so no longer needed
         }
         
-        //When one of the following errors occured: recover by resetting
+        //When one of the following errors occurred: recover by resetting
         if(RCSTAbits.OERR)
         {
             RCSTAbits.SPEN = 0;
@@ -74,10 +61,6 @@ int main(void) {
     }
     
     return (EXIT_SUCCESS);      
-}
-
-char get_port_pin(unsigned char *port, unsigned char pin){
-    return (*port & (1U << pin));
 }
 
 void default_handler(void){
@@ -289,12 +272,7 @@ void interrupt ISR(void) {
         T6CONbits.TMR6ON = 0;                                           //Disable TIMER6
         
         for(int i = 0; i < SENSOR_COUNT; ++i){                          //Iterate all sensors
-            Debounce debounce = sensors[i].debounce;
-            if(debounce.shouldDebounce &&                               //If sensor should debounce and debounce successful
-                    debounce.previousState == get_port_pin(sensors[i].port, sensors[i].pin)){
-                debounce.handler();                                     //Handle 
-                debounce.shouldDebounce = 0;                            //Mark as handled
-            }
+            process_debounce(&sensors[i]);
         }
         
         TMR6IF = 0;                                                     //Clear the TIMER4 Interrupt flag
@@ -326,40 +304,35 @@ void interrupt ISR(void) {
     //Smoke detector interrupt handler
     if(IOCAFbits.IOCAF1){                   
         shouldDebounce = 1;
-        sensors[0].debounce.shouldDebounce = 1;                         //This needs to be processed after debounce
-        sensors[0].debounce.previousState = PORTAbits.RA1;              //Save previous value
+        enable_debounce(&sensors[0]);
         IOCAFbits.IOCAF1 = 0;                                           //Clear the Interrupt_On_Change flag
     }
     
     //Switch(sync baud) interrupt handler
     if(IOCAFbits.IOCAF2){  
         shouldDebounce = 1;
-        sensors[1].debounce.shouldDebounce = 1;
-        sensors[1].debounce.previousState = PORTAbits.RA2;
+        enable_debounce(&sensors[1]);
         IOCAFbits.IOCAF2 = 0;                                           //Clear the Interrupt_On_Change flag
     }
     
     //Contact sensor 1 interrupt handler
     if(IOCAFbits.IOCAF3){
         shouldDebounce = 1;
-        sensors[2].debounce.shouldDebounce = 1;                         //This needs to be processed after debounce
-        sensors[2].debounce.previousState = PORTAbits.RA3;              //Save previous value
+        enable_debounce(&sensors[2]);
         IOCAFbits.IOCAF3 = 0;                                           //Clear the Interrupt_On_Change flag 
     }
     
     //Infrared sensor interrupt handler
     if(IOCAFbits.IOCAF4){   
         shouldDebounce = 1;
-        sensors[3].debounce.shouldDebounce = 1;                         //This needs to be processed after debounce
-        sensors[3].debounce.previousState = PORTAbits.RA4;              //Save previous value
+        enable_debounce(&sensors[3]);
         IOCAFbits.IOCAF4 = 0;                                           //Clear the Interrupt_On_Change flag
     }
     
     //Contact sensor 2 interrupt handler
     if(IOCAFbits.IOCAF5){
         shouldDebounce = 1;
-        sensors[4].debounce.shouldDebounce = 1;                         //This needs to be processed after debounce
-        sensors[4].debounce.previousState = PORTAbits.RA5;              //Save previous value
+        enable_debounce(&sensors[4]);
         IOCAFbits.IOCAF5 = 0;                                           //Clear the Interrupt_On_Change flag 
     }
     
