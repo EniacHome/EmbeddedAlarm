@@ -3947,14 +3947,13 @@ extern __bit __timeout;
 
 # 6 "sensor.h"
 typedef struct sensor_t{
-unsigned char index;
 unsigned char *port;
 unsigned char pin;
+void (*handler)(void);
 
 struct debounce_t {
-unsigned char shouldDebounce : 1;
-unsigned char previousState : 1;
-void (*handler)(void);
+unsigned char should_debounce : 1;
+unsigned char previous_state : 1;
 } debounce;
 } Sensor;
 
@@ -4094,29 +4093,30 @@ extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
 
-# 25 "main.c"
-void initializePIC(void);
-void initializeSensors(void);
+# 23 "main.c"
+void initialize_PIC(void);
+void initialize_sensors(void);
 void autoBaud(void);
 void default_handler(void);
 void switch_handler(void);
-void UART_Write_Text(char *text);
-void UART_Write(char date);
+void UART_write_text(char *text);
+void UART_write(char date);
 
-Sensor sensors[5];
-char shouldAutoBaud = 0;
+# 38
+Sensor sensors[6];
+char should_autobaud = 0;
 
 int main(void) {
-initializePIC();
-initializeSensors();
+initialize_PIC();
+initialize_sensors();
 
 while(1){
-if(shouldAutoBaud){
+if(should_autobaud){
 autoBaud();
-UART_Write_Text("V");
+UART_write_text("V");
 PIE1bits.RCIE = 1;
 PIE1bits.TXIE = 1;
-shouldAutoBaud = 0;
+should_autobaud = 0;
 }
 
 
@@ -4137,34 +4137,38 @@ return (0);
 }
 
 void default_handler(void){
-UART_Write_Text("xy");
+UART_write_text("xy");
+}
+
+void temperature_handler(void){
+
 }
 
 void switch_handler(void){
-shouldAutoBaud = 1;
+should_autobaud = 1;
 }
 
-void UART_Write(char data)
+void UART_write(char data)
 {
 while(!TRMT);
 TXREG = data;
 }
 
-void UART_Write_Text(char *text)
+void UART_write_text(char *text)
 {
 int count;
 for(count = 0; text[count]!='\0'; count++)
 {
-UART_Write(text[count]);
+UART_write(text[count]);
 }
 }
 
-void initializePIC(void){
+void initialize_PIC(void){
 
-# 95
+# 104
 OSCCON = 0b00111000;
 
-# 106
+# 115
 INTCON = 0b11001000;
 
 
@@ -4205,10 +4209,10 @@ IOCANbits.IOCAN4 = 1;
 IOCAPbits.IOCAP3 = 1;
 IOCAPbits.IOCAP5 = 1;
 
-# 151
+# 160
 ADCON0 = 0b00000001;
 
-# 158
+# 167
 ADCON1 = 0b10000000;
 
 PIR1bits.ADIF = 0;
@@ -4218,7 +4222,7 @@ PIE1bits.ADIE = 1;
 T2CON = 0b01111111;
 PIE1bits.TMR2IE = 1;
 
-# 172
+# 181
 T6CON = 0b00100000;
 PR6 = 125;
 PIE3bits.TMR6IE = 1;
@@ -4239,16 +4243,18 @@ RCSTAbits.CREN = 1;
 PIE1bits.RCIE = 1;
 }
 
-void initializeSensors(void){
-for(int i = 0; i < 5; ++i){
-sensors[i].index = i;
+void initialize_sensors(void){
+for(int i = 0; i < 6; ++i){
 sensors[i].port = &PORTA;
 sensors[i].pin = i + 1;
-sensors[i].debounce.handler = default_handler;
+sensors[i].handler = default_handler;
 }
 
 
-sensors[1].debounce.handler = switch_handler;
+sensors[0].handler = temperature_handler;
+
+
+sensors[2].handler = switch_handler;
 }
 
 void autoBaud(void)
@@ -4321,7 +4327,7 @@ int shouldDebounce = 0;
 if(PIR3bits.TMR6IF){
 T6CONbits.TMR6ON = 0;
 
-for(int i = 0; i < 5; ++i){
+for(int i = 0; i < 6; ++i){
 process_debounce(&sensors[i]);
 }
 
@@ -4331,9 +4337,10 @@ TMR6IF = 0;
 
 
 if(ADIF){
+sensors[0].handler();
 char str[15];
 sprintf(str," %d", ADRES);
-UART_Write_Text(str);
+UART_write_text(str);
 ADCON0bits.GO = 0;
 ADIF = 0;
 }
@@ -4354,35 +4361,35 @@ PIR1bits.TMR2IF = 0;
 
 if(IOCAFbits.IOCAF1){
 shouldDebounce = 1;
-enable_debounce(&sensors[0]);
+enable_debounce(&sensors[1]);
 IOCAFbits.IOCAF1 = 0;
 }
 
 
 if(IOCAFbits.IOCAF2){
 shouldDebounce = 1;
-enable_debounce(&sensors[1]);
+enable_debounce(&sensors[2]);
 IOCAFbits.IOCAF2 = 0;
 }
 
 
 if(IOCAFbits.IOCAF3){
 shouldDebounce = 1;
-enable_debounce(&sensors[2]);
+enable_debounce(&sensors[3]);
 IOCAFbits.IOCAF3 = 0;
 }
 
 
 if(IOCAFbits.IOCAF4){
 shouldDebounce = 1;
-enable_debounce(&sensors[3]);
+enable_debounce(&sensors[4]);
 IOCAFbits.IOCAF4 = 0;
 }
 
 
 if(IOCAFbits.IOCAF5){
 shouldDebounce = 1;
-enable_debounce(&sensors[4]);
+enable_debounce(&sensors[5]);
 IOCAFbits.IOCAF5 = 0;
 }
 

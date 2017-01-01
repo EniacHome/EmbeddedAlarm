@@ -10,10 +10,8 @@
 #define _XTAL_FREQ 500000
 #endif
 
-//Port A 1 - 5 will be used as sensors
-#define SENSOR_COUNT 5
-
-#define SWITCH PORTAbits.RA2
+//Port A 0 - 5 will be used as sensors
+#define SENSOR_COUNT 6
 
 #include "config.h"
 #include "sensor.h"
@@ -22,28 +20,35 @@
 #include <stdlib.h>
 #include <xc.h>
 
-void initializePIC(void);
-void initializeSensors(void);
+void initialize_PIC(void);
+void initialize_sensors(void);
 void autoBaud(void);
 void default_handler(void);
 void switch_handler(void);
-void UART_Write_Text(char *text);
-void UART_Write(char date);
+void UART_write_text(char *text);
+void UART_write(char date);
 
+//Sensor layout:
+//sensors[0] -> PORTA.0 -> Temperature sensor
+//sensors[1] -> PORTA.1 -> Smoke sensor
+//sensors[2] -> PORTA.2 -> SW1 AutoBaud
+//sensors[3] -> PORTA.3 -> Contact sensor
+//sensors[4] -> PORTA.4 -> Infrared sensor
+//sensors[5] -> PORTA.5 -> Contact sensor
 Sensor sensors[SENSOR_COUNT];
-char shouldAutoBaud = 0;
+char should_autobaud = 0;
 
 int main(void) {    
-    initializePIC();            //Initialize the PIC
-    initializeSensors();
+    initialize_PIC();            //Initialize the PIC
+    initialize_sensors();
     
      while(1){
-        if(shouldAutoBaud){ //AutoBaud detection takes time, so do it over here and not in ISR
+        if(should_autobaud){ //AutoBaud detection takes time, so do it over here and not in ISR
             autoBaud();                 //Initiate AutoBaud
-            UART_Write_Text("V");       // Send initialization and AutoBaud success
+            UART_write_text("V");       // Send initialization and AutoBaud success
             PIE1bits.RCIE = 1;          // Enable EUSART receive 
             PIE1bits.TXIE = 1;          // Enable EUSART transmit interrupt
-            shouldAutoBaud = 0;         // AutoBaud succeeded so no longer needed
+            should_autobaud = 0;         // AutoBaud succeeded so no longer needed
         }
         
         //When one of the following errors occurred: recover by resetting
@@ -64,29 +69,33 @@ int main(void) {
 }
 
 void default_handler(void){
-    UART_Write_Text("xy");
+    UART_write_text("xy");
+}
+
+void temperature_handler(void){
+    
 }
 
 void switch_handler(void){
-    shouldAutoBaud = 1;
+    should_autobaud = 1;
 }
 
-void UART_Write(char data)
+void UART_write(char data)
 {
     while(!TRMT);
     TXREG = data;
 }
 
-void UART_Write_Text(char *text)
+void UART_write_text(char *text)
 {
     int count;
     for(count = 0; text[count]!='\0'; count++)
     {
-        UART_Write(text[count]);
+        UART_write(text[count]);
     }
 }
 
-void initializePIC(void){
+void initialize_PIC(void){
 //  Configure Oscillator:
 //  SPLLEN=b'0' (bit 7)         //4xPLL is disabled
 //  IRCF=b'0111' (bit 6-3)      //Internal Oscillator Frequency is 500KHz 
@@ -189,16 +198,18 @@ void initializePIC(void){
     PIE1bits.RCIE = 1; // Enable EUSART receive interrupt
 }
 
-void initializeSensors(void){
+void initialize_sensors(void){
     for(int i = 0; i < SENSOR_COUNT; ++i){
-        sensors[i].index = i;
         sensors[i].port = &PORTA;
         sensors[i].pin = i + 1;
-        sensors[i].debounce.handler = default_handler;
+        sensors[i].handler = default_handler;
     }
     
+    //PORTA 0 - Temperature sensor
+    sensors[0].handler = temperature_handler;
+    
     //PORTA 2 - Switch used for AutoBaud
-    sensors[1].debounce.handler = switch_handler;
+    sensors[2].handler = switch_handler;
 }
 
 void autoBaud(void)
@@ -279,11 +290,12 @@ void interrupt ISR(void) {
     }
     
     //Analog/Digital conversion Interrupt flag handler
-    //Triggers when a AD conversion is finished
+    //Triggers when an AD conversion is finished
     if(ADIF){
+        sensors[0].handler();
         char str[15];
         sprintf(str," %d", ADRES);
-        UART_Write_Text(str);                                           //Call the procedure UART_Write_Text with str as parameter
+        UART_write_text(str);                                           //Call the procedure UART_Write_Text with str as parameter
         ADCON0bits.GO = 0;                                              //Toggle the Analog to Digital conversion module GO bit 
         ADIF = 0;                                                       //Clear the Analog to Digital conversion interrupt flag
     }
@@ -304,35 +316,35 @@ void interrupt ISR(void) {
     //Smoke detector interrupt handler
     if(IOCAFbits.IOCAF1){                   
         shouldDebounce = 1;
-        enable_debounce(&sensors[0]);
+        enable_debounce(&sensors[1]);
         IOCAFbits.IOCAF1 = 0;                                           //Clear the Interrupt_On_Change flag
     }
     
     //Switch(sync baud) interrupt handler
     if(IOCAFbits.IOCAF2){  
         shouldDebounce = 1;
-        enable_debounce(&sensors[1]);
+        enable_debounce(&sensors[2]);
         IOCAFbits.IOCAF2 = 0;                                           //Clear the Interrupt_On_Change flag
     }
     
     //Contact sensor 1 interrupt handler
     if(IOCAFbits.IOCAF3){
         shouldDebounce = 1;
-        enable_debounce(&sensors[2]);
+        enable_debounce(&sensors[3]);
         IOCAFbits.IOCAF3 = 0;                                           //Clear the Interrupt_On_Change flag 
     }
     
     //Infrared sensor interrupt handler
     if(IOCAFbits.IOCAF4){   
         shouldDebounce = 1;
-        enable_debounce(&sensors[3]);
+        enable_debounce(&sensors[4]);
         IOCAFbits.IOCAF4 = 0;                                           //Clear the Interrupt_On_Change flag
     }
     
     //Contact sensor 2 interrupt handler
     if(IOCAFbits.IOCAF5){
         shouldDebounce = 1;
-        enable_debounce(&sensors[4]);
+        enable_debounce(&sensors[5]);
         IOCAFbits.IOCAF5 = 0;                                           //Clear the Interrupt_On_Change flag 
     }
     
