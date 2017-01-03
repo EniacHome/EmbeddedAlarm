@@ -3948,153 +3948,37 @@ extern __bit __timeout;
 # 6 "sensor.h"
 typedef struct sensor_t{
 unsigned char index;
+unsigned char pin;
+unsigned char *port;
 void (*handler)(struct sensor_t *sensor);
 
 struct debounce_t {
 unsigned char should_debounce : 1;
 unsigned char previous_state : 1;
-unsigned char pin : 3;
-unsigned char *port;
 } debounce;
 } Sensor;
 
+unsigned char get_value(Sensor *sensor);
 
-void enable_debounce(Sensor *sensor);
-void process_debounce(Sensor *sensor);
 
-# 4 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\__size_t.h"
-typedef unsigned size_t;
+void pre_debounce(Sensor *sensor);
+void post_debounce(Sensor *sensor);
 
-# 7 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\stdarg.h"
-typedef void * va_list[1];
-
-#pragma intrinsic(__va_start)
-extern void * __va_start(void);
-
-#pragma intrinsic(__va_arg)
-extern void * __va_arg(void *, ...);
-
-# 43 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h"
-struct __prbuf
+# 29 "main.c"
+typedef struct package_t
 {
-char * ptr;
-void (* func)(char);
+union {
+struct{
+unsigned char index : 7;
+unsigned char extended : 1;
+};
+unsigned char first;
 };
 
-# 29 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\errno.h"
-extern int errno;
+unsigned char value;
+unsigned char extended_value;
+} Package;
 
-# 12 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\conio.h"
-extern void init_uart(void);
-
-extern char getch(void);
-extern char getche(void);
-extern void putch(char);
-extern void ungetch(char);
-
-extern __bit kbhit(void);
-
-# 23
-extern char * cgets(char *);
-extern void cputs(const char *);
-
-# 88 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h"
-extern int cprintf(char *, ...);
-#pragma printf_check(cprintf)
-
-
-
-extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-
-
-# 180
-#pragma printf_check(vprintf) const
-#pragma printf_check(vsprintf) const
-
-extern char * gets(char *);
-extern int puts(const char *);
-extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
-extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
-extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
-extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
-extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
-
-#pragma printf_check(printf) const
-#pragma printf_check(sprintf) const
-extern int sprintf(char *, const char *, ...);
-extern int printf(const char *, ...);
-
-# 7 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\stdlib.h"
-typedef unsigned short wchar_t;
-
-# 15
-typedef struct {
-int rem;
-int quot;
-} div_t;
-typedef struct {
-unsigned rem;
-unsigned quot;
-} udiv_t;
-typedef struct {
-long quot;
-long rem;
-} ldiv_t;
-typedef struct {
-unsigned long quot;
-unsigned long rem;
-} uldiv_t;
-
-# 53
-extern double atof(const char *);
-extern double strtod(const char *, const char **);
-extern int atoi(const char *);
-extern unsigned xtoi(const char *);
-extern long atol(const char *);
-extern long strtol(const char *, char **, int);
-
-extern int rand(void);
-extern void srand(unsigned int);
-extern void * calloc(size_t, size_t);
-extern div_t div(int numer, int denom);
-extern udiv_t udiv(unsigned numer, unsigned denom);
-extern ldiv_t ldiv(long numer, long denom);
-extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
-extern unsigned long _lrotl(unsigned long value, unsigned int shift);
-extern unsigned long _lrotr(unsigned long value, unsigned int shift);
-extern unsigned int _rotl(unsigned int value, unsigned int shift);
-extern unsigned int _rotr(unsigned int value, unsigned int shift);
-
-
-
-
-extern void * malloc(size_t);
-extern void free(void *);
-extern void * realloc(void *, size_t);
-
-# 86
-extern int atexit(void (*)(void));
-extern char * getenv(const char *);
-extern char ** environ;
-extern int system(char *);
-extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
-extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
-extern int abs(int);
-extern long labs(long);
-
-extern char * itoa(char * buf, int val, int base);
-extern char * utoa(char * buf, unsigned val, int base);
-
-
-
-
-extern char * ltoa(char * buf, long val, int base);
-extern char * ultoa(char * buf, unsigned long val, int base);
-
-extern char * ftoa(float f, int * status);
-
-# 23 "main.c"
 void initialize_PIC(void);
 void initialize_sensors(void);
 void autoBaud(void);
@@ -4104,7 +3988,7 @@ void switch_handler(Sensor *sensor);
 void UART_write_text(char *text);
 void UART_write(char data);
 
-# 39
+# 59
 Sensor sensors[6];
 char should_autobaud = 0;
 
@@ -4135,15 +4019,32 @@ RCSTAbits.SPEN = 1;
 }
 }
 
-return (0);
+return 0;
+}
+
+
+Package create_package(unsigned char index, unsigned short value, unsigned char extended){
+Package package;
+
+package.index = index;
+package.extended = extended ? 1 : 0;
+package.value = value;
+package.extended_value = value >> 8;
+
+return package;
 }
 
 void default_handler(Sensor *sensor){
-
+Package package = create_package(sensor->index, get_value(sensor), 0);
+UART_write(package.first);
+UART_write(package.value);
 }
 
 void temperature_handler(Sensor *sensor){
-
+Package package = create_package(sensor->index, ADRES, !0);
+UART_write(package.first);
+UART_write(package.value);
+UART_write(package.extended_value);
 }
 
 void switch_handler(Sensor *sensor){
@@ -4167,10 +4068,10 @@ UART_write(text[count]);
 
 void initialize_PIC(void){
 
-# 105
+# 142
 OSCCON = 0b00111000;
 
-# 116
+# 153
 INTCON = 0b11001000;
 
 
@@ -4211,10 +4112,10 @@ IOCANbits.IOCAN4 = 1;
 IOCAPbits.IOCAP3 = 1;
 IOCAPbits.IOCAP5 = 1;
 
-# 161
+# 198
 ADCON0 = 0b00000001;
 
-# 168
+# 205
 ADCON1 = 0b10000000;
 
 PIR1bits.ADIF = 0;
@@ -4224,7 +4125,7 @@ PIE1bits.ADIE = 1;
 T2CON = 0b01111111;
 PIE1bits.TMR2IE = 1;
 
-# 182
+# 219
 T6CON = 0b00100000;
 PR6 = 125;
 PIE3bits.TMR6IE = 1;
@@ -4248,8 +4149,8 @@ PIE1bits.RCIE = 1;
 void initialize_sensors(void){
 for(int i = 0; i < 6; ++i){
 sensors[i].index = i;
-sensors[i].debounce.port = &PORTA;
-sensors[i].debounce.pin = i;
+sensors[i].port = &PORTA;
+sensors[i].pin = i;
 sensors[i].handler = default_handler;
 }
 
@@ -4331,7 +4232,7 @@ if(PIR3bits.TMR6IF){
 T6CONbits.TMR6ON = 0;
 
 for(int i = 0; i < 6; ++i){
-process_debounce(&sensors[i]);
+post_debounce(&sensors[i]);
 }
 
 TMR6IF = 0;
@@ -4362,35 +4263,35 @@ PIR1bits.TMR2IF = 0;
 
 if(IOCAFbits.IOCAF1){
 shouldDebounce = 1;
-enable_debounce(&sensors[1]);
+pre_debounce(&sensors[1]);
 IOCAFbits.IOCAF1 = 0;
 }
 
 
 if(IOCAFbits.IOCAF2){
 shouldDebounce = 1;
-enable_debounce(&sensors[2]);
+pre_debounce(&sensors[2]);
 IOCAFbits.IOCAF2 = 0;
 }
 
 
 if(IOCAFbits.IOCAF3){
 shouldDebounce = 1;
-enable_debounce(&sensors[3]);
+pre_debounce(&sensors[3]);
 IOCAFbits.IOCAF3 = 0;
 }
 
 
 if(IOCAFbits.IOCAF4){
 shouldDebounce = 1;
-enable_debounce(&sensors[4]);
+pre_debounce(&sensors[4]);
 IOCAFbits.IOCAF4 = 0;
 }
 
 
 if(IOCAFbits.IOCAF5){
 shouldDebounce = 1;
-enable_debounce(&sensors[5]);
+pre_debounce(&sensors[5]);
 IOCAFbits.IOCAF5 = 0;
 }
 

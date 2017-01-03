@@ -2,21 +2,21 @@
 
 #include <xc.h>
 
-char get_port_pin(unsigned char *port, unsigned char pin){
-    return (*port & (1U << pin));
+char Sensor_get_value(Sensor *sensor){
+    return (*sensor->port & (1U << sensor->pin));
 }
 
-void enable_debounce(Sensor *sensor){
-    sensor->debounce.should_debounce = 1;                                        //This needs to be processed after debounce
-    sensor->debounce.previous_state = get_port_pin(sensor->debounce.port, sensor->debounce.pin);  //Save previous value
+void Sensor_pre_debounce(Sensor *sensor){
+    sensor->debounce.should_debounce = 1;                                       //This needs to be processed after debounce
+    sensor->debounce.previous_state = Sensor_get_value(sensor);                     //Save previous value
 }
 
-void process_debounce(Sensor *sensor){
-    if(sensor->debounce.should_debounce &&                                       //If sensor should debounce and debounce successful
-            sensor->debounce.previous_state == get_port_pin(sensor->debounce.port, sensor->debounce.pin))
+void Sensor_post_debounce(Sensor *sensor){
+    if(sensor->debounce.should_debounce &&                                      //If sensor should debounce and debounce successful
+            sensor->debounce.previous_state == Sensor_get_value(sensor))
     {
-        sensor->handler(sensor);                                                      //Handle 
-        sensor->debounce.should_debounce = 0;                                    //Mark as handled
+        sensor->handler(sensor);                                                //Handle 
+        sensor->debounce.should_debounce = 0;                                   //Mark as handled
     }
 }
 

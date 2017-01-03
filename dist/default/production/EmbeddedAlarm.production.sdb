@@ -14,37 +14,48 @@
 [v _eecpymem eecpymem `(v  1 e 1 0 ]
 "39
 [v _memcpyee memcpyee `(v  1 e 1 0 ]
-"42 D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+"62 D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
 [v _main main `(i  1 e 2 0 ]
-"72
+"29
+"31
+"32
+[s S92 . 1 `uc 1 index 1 0 :7:0 
+`uc 1 extended 1 0 :1:7 
+]
+"93
+[u S95 . 1 `S92 1 . 1 0 `uc 1 first 1 0 ]
+[s S98 package_t 3 `S95 1 . 1 0 `uc 1 value 1 1 `uc 1 extended_value 1 2 ]
+[v _create_package create_package `(S98  1 e 3 0 ]
+"104
 [v _default_handler default_handler `(v  1 e 1 0 ]
-"76
+"110
 [v _temperature_handler temperature_handler `(v  1 e 1 0 ]
-"80
+"117
 [v _switch_handler switch_handler `(v  1 e 1 0 ]
-"84
+"121
 [v _UART_write UART_write `(v  1 e 1 0 ]
-"90
+[v i1_UART_write UART_write `(v  1 e 1 0 ]
+"127
 [v _UART_write_text UART_write_text `(v  1 e 1 0 ]
-"99
+"136
 [v _initialize_PIC initialize_PIC `(v  1 e 1 0 ]
-"202
+"239
 [v _initialize_sensors initialize_sensors `(v  1 e 1 0 ]
-"217
+"254
 [v _autoBaud autoBaud `(v  1 e 1 0 ]
-"280
+"317
 [v _ISR ISR `II(v  1 e 1 0 ]
 "5 D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
-[v _get_port_pin get_port_pin `(uc  1 e 1 0 ]
+[v _get_value get_value `(uc  1 e 1 0 ]
 "9
-[v _enable_debounce enable_debounce `(v  1 e 1 0 ]
+[v _pre_debounce pre_debounce `(v  1 e 1 0 ]
 "14
-[v _process_debounce process_debounce `(v  1 e 1 0 ]
+[v _post_debounce post_debounce `(v  1 e 1 0 ]
 "335 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic16f1829.h
 [v _INTCON INTCON `VEuc  1 e 1 @11 ]
 "412
 [v _PORTA PORTA `VEuc  1 e 1 @12 ]
-[s S201 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[s S222 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSP1IF 1 0 :1:3 
@@ -54,9 +65,9 @@
 `uc 1 TMR1GIF 1 0 :1:7 
 ]
 "577
-[u S210 . 1 `S201 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES210  1 e 1 @17 ]
-[s S304 . 1 `uc 1 . 1 0 :1:0 
+[u S231 . 1 `S222 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES231  1 e 1 @17 ]
+[s S325 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 TMR4IF 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 TMR6IF 1 0 :1:3 
@@ -64,11 +75,11 @@
 `uc 1 CCP4IF 1 0 :1:5 
 ]
 "686
-[u S311 . 1 `S304 1 . 1 0 ]
-[v _PIR3bits PIR3bits `VES311  1 e 1 @19 ]
+[u S332 . 1 `S325 1 . 1 0 ]
+[v _PIR3bits PIR3bits `VES332  1 e 1 @19 ]
 "976
 [v _T2CON T2CON `VEuc  1 e 1 @28 ]
-[s S118 . 1 `uc 1 TRISA0 1 0 :1:0 
+[s S139 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
@@ -76,9 +87,9 @@
 `uc 1 TRISA5 1 0 :1:5 
 ]
 "1165
-[u S125 . 1 `S118 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES125  1 e 1 @140 ]
-[s S96 . 1 `uc 1 TRISC0 1 0 :1:0 
+[u S146 . 1 `S139 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES146  1 e 1 @140 ]
+[s S117 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -88,8 +99,8 @@
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "1254
-[u S105 . 1 `S96 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES105  1 e 1 @142 ]
+[u S126 . 1 `S117 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES126  1 e 1 @142 ]
 [s S50 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
@@ -102,7 +113,7 @@
 "1315
 [u S59 . 1 `S50 1 . 1 0 ]
 [v _PIE1bits PIE1bits `VES59  1 e 1 @145 ]
-[s S225 . 1 `uc 1 . 1 0 :1:0 
+[s S246 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 TMR4IE 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 TMR6IE 1 0 :1:3 
@@ -110,13 +121,15 @@
 `uc 1 CCP4IE 1 0 :1:5 
 ]
 "1424
-[u S232 . 1 `S225 1 . 1 0 ]
-[v _PIE3bits PIE3bits `VES232  1 e 1 @147 ]
+[u S253 . 1 `S246 1 . 1 0 ]
+[v _PIE3bits PIE3bits `VES253  1 e 1 @147 ]
 "1720
 [v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
+"1852
+[v _ADRES ADRES `VEus  1 e 2 @155 ]
 "1896
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @157 ]
-[s S356 . 1 `uc 1 ADON 1 0 :1:0 
+[s S377 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
 `uc 1 CHS0 1 0 :1:2 
 `uc 1 CHS1 1 0 :1:3 
@@ -125,39 +138,39 @@
 `uc 1 CHS4 1 0 :1:6 
 ]
 "1921
-[s S364 . 1 `uc 1 . 1 0 :1:0 
+[s S385 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 ADGO 1 0 :1:1 
 `uc 1 CHS 1 0 :5:2 
 ]
-[s S368 . 1 `uc 1 . 1 0 :1:0 
+[s S389 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 ]
-[u S371 . 1 `S356 1 . 1 0 `S364 1 . 1 0 `S368 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES371  1 e 1 @157 ]
+[u S392 . 1 `S377 1 . 1 0 `S385 1 . 1 0 `S389 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES392  1 e 1 @157 ]
 "1975
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @158 ]
 "2128
 [v _LATC LATC `VEuc  1 e 1 @270 ]
-[s S242 . 1 `uc 1 . 1 0 :2:0 
+[s S263 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 TXCKSEL 1 0 :1:2 
 `uc 1 T1GSEL 1 0 :1:3 
 `uc 1 . 1 0 :3:4 
 `uc 1 RXDTSEL 1 0 :1:7 
 ]
 "2813
-[u S248 . 1 `S242 1 . 1 0 ]
-[v _APFCON0bits APFCON0bits `VES248  1 e 1 @285 ]
-[s S135 . 1 `uc 1 ANSA0 1 0 :1:0 
+[u S269 . 1 `S263 1 . 1 0 ]
+[v _APFCON0bits APFCON0bits `VES269  1 e 1 @285 ]
+[s S156 . 1 `uc 1 ANSA0 1 0 :1:0 
 `uc 1 ANSA1 1 0 :1:1 
 `uc 1 ANSA2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
 `uc 1 ANSA4 1 0 :1:4 
 ]
 "2898
-[s S141 . 1 `uc 1 ANSELA 1 0 :5:0 
+[s S162 . 1 `uc 1 ANSELA 1 0 :5:0 
 ]
-[u S143 . 1 `S135 1 . 1 0 `S141 1 . 1 0 ]
-[v _ANSELAbits ANSELAbits `VES143  1 e 1 @396 ]
+[u S164 . 1 `S156 1 . 1 0 `S162 1 . 1 0 ]
+[v _ANSELAbits ANSELAbits `VES164  1 e 1 @396 ]
 "3206
 [v _RCREG RCREG `VEuc  1 e 1 @409 ]
 "3225
@@ -178,7 +191,7 @@
 "3305
 [u S80 . 1 `S71 1 . 1 0 ]
 [v _RCSTAbits RCSTAbits `VES80  1 e 1 @413 ]
-[s S258 . 1 `uc 1 TX9D 1 0 :1:0 
+[s S279 . 1 `uc 1 TX9D 1 0 :1:0 
 `uc 1 TRMT 1 0 :1:1 
 `uc 1 BRGH 1 0 :1:2 
 `uc 1 SENDB 1 0 :1:3 
@@ -188,9 +201,9 @@
 `uc 1 CSRC 1 0 :1:7 
 ]
 "3366
-[u S267 . 1 `S258 1 . 1 0 ]
-[v _TXSTAbits TXSTAbits `VES267  1 e 1 @414 ]
-[s S281 . 1 `uc 1 ABDEN 1 0 :1:0 
+[u S288 . 1 `S279 1 . 1 0 ]
+[v _TXSTAbits TXSTAbits `VES288  1 e 1 @414 ]
+[s S302 . 1 `uc 1 ABDEN 1 0 :1:0 
 `uc 1 WUE 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 BRG16 1 0 :1:3 
@@ -200,9 +213,9 @@
 `uc 1 ABDOVF 1 0 :1:7 
 ]
 "3427
-[u S290 . 1 `S281 1 . 1 0 ]
-[v _BAUDCONbits BAUDCONbits `VES290  1 e 1 @415 ]
-[s S177 . 1 `uc 1 IOCAP0 1 0 :1:0 
+[u S311 . 1 `S302 1 . 1 0 ]
+[v _BAUDCONbits BAUDCONbits `VES311  1 e 1 @415 ]
+[s S198 . 1 `uc 1 IOCAP0 1 0 :1:0 
 `uc 1 IOCAP1 1 0 :1:1 
 `uc 1 IOCAP2 1 0 :1:2 
 `uc 1 IOCAP3 1 0 :1:3 
@@ -210,11 +223,11 @@
 `uc 1 IOCAP5 1 0 :1:5 
 ]
 "5828
-[s S184 . 1 `uc 1 IOCAP 1 0 :6:0 
+[s S205 . 1 `uc 1 IOCAP 1 0 :6:0 
 ]
-[u S186 . 1 `S177 1 . 1 0 `S184 1 . 1 0 ]
-[v _IOCAPbits IOCAPbits `VES186  1 e 1 @913 ]
-[s S155 . 1 `uc 1 IOCAN0 1 0 :1:0 
+[u S207 . 1 `S198 1 . 1 0 `S205 1 . 1 0 ]
+[v _IOCAPbits IOCAPbits `VES207  1 e 1 @913 ]
+[s S176 . 1 `uc 1 IOCAN0 1 0 :1:0 
 `uc 1 IOCAN1 1 0 :1:1 
 `uc 1 IOCAN2 1 0 :1:2 
 `uc 1 IOCAN3 1 0 :1:3 
@@ -222,11 +235,11 @@
 `uc 1 IOCAN5 1 0 :1:5 
 ]
 "5885
-[s S162 . 1 `uc 1 IOCAN 1 0 :6:0 
+[s S183 . 1 `uc 1 IOCAN 1 0 :6:0 
 ]
-[u S164 . 1 `S155 1 . 1 0 `S162 1 . 1 0 ]
-[v _IOCANbits IOCANbits `VES164  1 e 1 @914 ]
-[s S391 . 1 `uc 1 IOCAF0 1 0 :1:0 
+[u S185 . 1 `S176 1 . 1 0 `S183 1 . 1 0 ]
+[v _IOCANbits IOCANbits `VES185  1 e 1 @914 ]
+[s S412 . 1 `uc 1 IOCAF0 1 0 :1:0 
 `uc 1 IOCAF1 1 0 :1:1 
 `uc 1 IOCAF2 1 0 :1:2 
 `uc 1 IOCAF3 1 0 :1:3 
@@ -234,15 +247,15 @@
 `uc 1 IOCAF5 1 0 :1:5 
 ]
 "5942
-[s S398 . 1 `uc 1 IOCAF 1 0 :6:0 
+[s S419 . 1 `uc 1 IOCAF 1 0 :6:0 
 ]
-[u S400 . 1 `S391 1 . 1 0 `S398 1 . 1 0 ]
-[v _IOCAFbits IOCAFbits `VES400  1 e 1 @915 ]
+[u S421 . 1 `S412 1 . 1 0 `S419 1 . 1 0 ]
+[v _IOCAFbits IOCAFbits `VES421  1 e 1 @915 ]
 "6554
 [v _PR6 PR6 `VEuc  1 e 1 @1053 ]
 "6573
 [v _T6CON T6CON `VEuc  1 e 1 @1054 ]
-[s S321 . 1 `uc 1 T6CKPS0 1 0 :1:0 
+[s S342 . 1 `uc 1 T6CKPS0 1 0 :1:0 
 `uc 1 T6CKPS1 1 0 :1:1 
 `uc 1 TMR6ON 1 0 :1:2 
 `uc 1 T6OUTPS0 1 0 :1:3 
@@ -251,12 +264,12 @@
 `uc 1 T6OUTPS3 1 0 :1:6 
 ]
 "6594
-[s S329 . 1 `uc 1 T6CKPS 1 0 :2:0 
+[s S350 . 1 `uc 1 T6CKPS 1 0 :2:0 
 `uc 1 . 1 0 :1:2 
 `uc 1 T6OUTPS 1 0 :4:3 
 ]
-[u S333 . 1 `S321 1 . 1 0 `S329 1 . 1 0 ]
-[v _T6CONbits T6CONbits `VES333  1 e 1 @1054 ]
+[u S354 . 1 `S342 1 . 1 0 `S350 1 . 1 0 ]
+[v _T6CONbits T6CONbits `VES354  1 e 1 @1054 ]
 "6892
 [v _ADIF ADIF `VEb  1 e 0 @142 ]
 "6936
@@ -265,83 +278,82 @@
 [v _TMR6IF TMR6IF `VEb  1 e 0 @155 ]
 "7794
 [v _TRMT TRMT `VEb  1 e 0 @3313 ]
-[s S21 debounce_t 3 `uc 1 should_debounce 1 0 :1:0 
+[s S21 debounce_t 1 `uc 1 should_debounce 1 0 :1:0 
 `uc 1 previous_state 1 0 :1:1 
-`uc 1 pin 1 0 :3:2 
-`*.39uc 1 port 2 1 ]
-"39 D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-[s S20 sensor_t 6 `uc 1 index 1 0 `*.37(v 1 handler 2 1 `S21 1 debounce 3 3 ]
-[v _sensors sensors `[6]S20  1 e 36 0 ]
-"40
+]
+"59 D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+[s S20 sensor_t 7 `uc 1 index 1 0 `uc 1 pin 1 1 `*.39uc 1 port 2 2 `*.37(v 1 handler 2 4 `S21 1 debounce 1 6 ]
+[v _sensors sensors `[6]S20  1 e 42 0 ]
+"60
 [v _should_autobaud should_autobaud `uc  1 e 1 0 ]
-"42
+"62
 [v _main main `(i  1 e 2 0 ]
 {
-"70
+"90
 } 0
-"202
+"239
 [v _initialize_sensors initialize_sensors `(v  1 e 1 0 ]
 {
-"203
-[v initialize_sensors@i i `i  1 a 2 7 ]
-"215
+"240
+[v initialize_sensors@i i `i  1 a 2 20 ]
+"252
 } 0
 "4 D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
 [v ___bmul __bmul `(uc  1 e 1 0 ]
 {
 [v ___bmul@multiplier multiplier `uc  1 a 1 wreg ]
 "6
-[v ___bmul@product product `uc  1 a 1 2 ]
+[v ___bmul@product product `uc  1 a 1 15 ]
 "4
 [v ___bmul@multiplier multiplier `uc  1 a 1 wreg ]
-[v ___bmul@multiplicand multiplicand `uc  1 p 1 0 ]
+[v ___bmul@multiplicand multiplicand `uc  1 p 1 13 ]
 "6
-[v ___bmul@multiplier multiplier `uc  1 a 1 3 ]
+[v ___bmul@multiplier multiplier `uc  1 a 1 16 ]
 "51
 } 0
-"99 D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+"136 D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
 [v _initialize_PIC initialize_PIC `(v  1 e 1 0 ]
 {
-"200
+"237
 } 0
-"217
+"254
 [v _autoBaud autoBaud `(v  1 e 1 0 ]
 {
-"220
-[v autoBaud@index index `i  1 a 2 4 ]
-"221
-[v autoBaud@sync_count sync_count `i  1 a 2 2 ]
-"219
-[v autoBaud@discard discard `uc  1 a 1 1 ]
-"277
+"257
+[v autoBaud@index index `i  1 a 2 17 ]
+"258
+[v autoBaud@sync_count sync_count `i  1 a 2 15 ]
+"256
+[v autoBaud@discard discard `uc  1 a 1 14 ]
+"314
 } 0
-"90
+"127
 [v _UART_write_text UART_write_text `(v  1 e 1 0 ]
 {
-"92
-[v UART_write_text@count count `i  1 a 2 4 ]
-"90
-[v UART_write_text@text text `*.25uc  1 p 2 1 ]
-"97
+"129
+[v UART_write_text@count count `i  1 a 2 17 ]
+"127
+[v UART_write_text@text text `*.25uc  1 p 2 14 ]
+"134
 } 0
-"84
+"121
 [v _UART_write UART_write `(v  1 e 1 0 ]
 {
 [v UART_write@data data `uc  1 a 1 wreg ]
 [v UART_write@data data `uc  1 a 1 wreg ]
-[v UART_write@data data `uc  1 a 1 0 ]
-"88
+[v UART_write@data data `uc  1 a 1 13 ]
+"125
 } 0
-"280
+"317
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"287
-[v ISR@i i `i  1 a 2 12 ]
-"306
-[v ISR@x x `uc  1 a 1 9 ]
-"281
-[v ISR@shouldDebounce shouldDebounce `i  1 a 2 10 ]
-"354
+"324
+[v ISR@i i `i  1 a 2 11 ]
+"343
+[v ISR@x x `uc  1 a 1 8 ]
+"318
+[v ISR@shouldDebounce shouldDebounce `i  1 a 2 9 ]
+"391
 } 0
 "4 D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
 [v i1___bmul __bmul `(uc  1 e 1 0 ]
@@ -354,54 +366,117 @@
 [v i1___bmul@multiplier multiplier `uc  1 a 1 2 ]
 "51
 } 0
-"14 D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
-[v _process_debounce process_debounce `(v  1 e 1 0 ]
-{
-[v process_debounce@sensor sensor `*.4S20  1 a 1 wreg ]
-[v process_debounce@sensor sensor `*.4S20  1 a 1 wreg ]
-"16
-"14
-[v process_debounce@sensor sensor `*.4S20  1 a 1 6 ]
-"21
-} 0
-"80 D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-[v _switch_handler switch_handler `(v  1 e 1 0 ]
-{
-[s S21 debounce_t 3 `uc 1 should_debounce 1 0 :1:0 
-`uc 1 previous_state 1 0 :1:1 
-`uc 1 pin 1 0 :3:2 
-`*.39uc 1 port 2 1 ]
-[s S20 sensor_t 6 `uc 1 index 1 0 `*.37(v 1 handler 2 1 `S21 1 debounce 3 3 ]
-[v switch_handler@sensor sensor `*.4S20  1 p 1 0 ]
-"82
-} 0
-"72
-[v _default_handler default_handler `(v  1 e 1 0 ]
-{
-"74
-} 0
-"76
-[v _temperature_handler temperature_handler `(v  1 e 1 0 ]
-{
-"78
-} 0
 "9 D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
-[v _enable_debounce enable_debounce `(v  1 e 1 0 ]
+[v _pre_debounce pre_debounce `(v  1 e 1 0 ]
 {
-[s S21 debounce_t 3 `uc 1 should_debounce 1 0 :1:0 
+[s S21 debounce_t 1 `uc 1 should_debounce 1 0 :1:0 
 `uc 1 previous_state 1 0 :1:1 
-`uc 1 pin 1 0 :3:2 
-`*.39uc 1 port 2 1 ]
-[s S20 sensor_t 6 `uc 1 index 1 0 `*.37(v 1 handler 2 1 `S21 1 debounce 3 3 ]
-[v enable_debounce@sensor sensor `*.4S20  1 a 1 wreg ]
-[v enable_debounce@sensor sensor `*.4S20  1 a 1 wreg ]
-[v enable_debounce@sensor sensor `*.4S20  1 a 1 6 ]
+]
+[s S20 sensor_t 7 `uc 1 index 1 0 `uc 1 pin 1 1 `*.39uc 1 port 2 2 `*.37(v 1 handler 2 4 `S21 1 debounce 1 6 ]
+[v pre_debounce@sensor sensor `*.4S20  1 a 1 wreg ]
+[v pre_debounce@sensor sensor `*.4S20  1 a 1 wreg ]
+[v pre_debounce@sensor sensor `*.4S20  1 a 1 5 ]
 "12
 } 0
-"5
-[v _get_port_pin get_port_pin `(uc  1 e 1 0 ]
+"14
+[v _post_debounce post_debounce `(v  1 e 1 0 ]
 {
-[v get_port_pin@port port `*.39uc  1 p 2 0 ]
-[v get_port_pin@pin pin `uc  1 p 1 2 ]
+[s S21 debounce_t 1 `uc 1 should_debounce 1 0 :1:0 
+`uc 1 previous_state 1 0 :1:1 
+]
+[s S20 sensor_t 7 `uc 1 index 1 0 `uc 1 pin 1 1 `*.39uc 1 port 2 2 `*.37(v 1 handler 2 4 `S21 1 debounce 1 6 ]
+[v post_debounce@sensor sensor `*.4S20  1 a 1 wreg ]
+[v post_debounce@sensor sensor `*.4S20  1 a 1 wreg ]
+"16
+"14
+[v post_debounce@sensor sensor `*.4S20  1 a 1 5 ]
+"21
+} 0
+"117 D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+[v _switch_handler switch_handler `(v  1 e 1 0 ]
+{
+[s S21 debounce_t 1 `uc 1 should_debounce 1 0 :1:0 
+`uc 1 previous_state 1 0 :1:1 
+]
+[s S20 sensor_t 7 `uc 1 index 1 0 `uc 1 pin 1 1 `*.39uc 1 port 2 2 `*.37(v 1 handler 2 4 `S21 1 debounce 1 6 ]
+[v switch_handler@sensor sensor `*.4S20  1 p 1 12 ]
+"119
+} 0
+"104
+[v _default_handler default_handler `(v  1 e 1 0 ]
+{
+[s S92 . 1 `uc 1 index 1 0 :7:0 
+`uc 1 extended 1 0 :1:7 
+]
+"105
+[u S95 . 1 `S92 1 . 1 0 `uc 1 first 1 0 ]
+[s S98 package_t 3 `S95 1 . 1 0 `uc 1 value 1 1 `uc 1 extended_value 1 2 ]
+[v default_handler@package package `S98  1 a 3 2 ]
+[s S21 debounce_t 1 `uc 1 should_debounce 1 0 :1:0 
+`uc 1 previous_state 1 0 :1:1 
+]
+"104
+[s S20 sensor_t 7 `uc 1 index 1 0 `uc 1 pin 1 1 `*.39uc 1 port 2 2 `*.37(v 1 handler 2 4 `S21 1 debounce 1 6 ]
+[v default_handler@sensor sensor `*.4S20  1 p 1 12 ]
+"108
+} 0
+"110
+[v _temperature_handler temperature_handler `(v  1 e 1 0 ]
+{
+[s S92 . 1 `uc 1 index 1 0 :7:0 
+`uc 1 extended 1 0 :1:7 
+]
+"111
+[u S95 . 1 `S92 1 . 1 0 `uc 1 first 1 0 ]
+[s S98 package_t 3 `S95 1 . 1 0 `uc 1 value 1 1 `uc 1 extended_value 1 2 ]
+[v temperature_handler@package package `S98  1 a 3 0 ]
+[s S21 debounce_t 1 `uc 1 should_debounce 1 0 :1:0 
+`uc 1 previous_state 1 0 :1:1 
+]
+"110
+[s S20 sensor_t 7 `uc 1 index 1 0 `uc 1 pin 1 1 `*.39uc 1 port 2 2 `*.37(v 1 handler 2 4 `S21 1 debounce 1 6 ]
+[v temperature_handler@sensor sensor `*.4S20  1 p 1 12 ]
+"115
+} 0
+"121
+[v i1_UART_write UART_write `(v  1 e 1 0 ]
+{
+[v i1UART_write@data data `uc  1 a 1 wreg ]
+[v i1UART_write@data data `uc  1 a 1 wreg ]
+[v i1UART_write@data data `uc  1 a 1 0 ]
+"125
+} 0
+"5 D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
+[v _get_value get_value `(uc  1 e 1 0 ]
+{
+[s S21 debounce_t 1 `uc 1 should_debounce 1 0 :1:0 
+`uc 1 previous_state 1 0 :1:1 
+]
+[s S20 sensor_t 7 `uc 1 index 1 0 `uc 1 pin 1 1 `*.39uc 1 port 2 2 `*.37(v 1 handler 2 4 `S21 1 debounce 1 6 ]
+[v get_value@sensor sensor `*.4S20  1 a 1 wreg ]
+[v get_value@sensor sensor `*.4S20  1 a 1 wreg ]
+[v get_value@sensor sensor `*.4S20  1 a 1 3 ]
 "7
+} 0
+"29 D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+"31
+"32
+[s S92 . 1 `uc 1 index 1 0 :7:0 
+`uc 1 extended 1 0 :1:7 
+]
+"93
+[u S95 . 1 `S92 1 . 1 0 `uc 1 first 1 0 ]
+[s S98 package_t 3 `S95 1 . 1 0 `uc 1 value 1 1 `uc 1 extended_value 1 2 ]
+[v _create_package create_package `(S98  1 e 3 0 ]
+{
+[v create_package@index index `uc  1 a 1 wreg ]
+"94
+[v create_package@package package `S98  1 a 3 9 ]
+"93
+[v create_package@index index `uc  1 a 1 wreg ]
+[v create_package@value value `us  1 p 2 4 ]
+[v create_package@extended extended `uc  1 p 1 6 ]
+"96
+[v create_package@index index `uc  1 a 1 8 ]
+"102
 } 0

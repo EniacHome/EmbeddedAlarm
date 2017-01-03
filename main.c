@@ -6,6 +6,9 @@
  * Created on August 19, 2016, 2:24 PM
  */
 
+#define FALSE 0
+#define TRUE !FALSE
+
 #ifndef __XTAL_FREQ
 #define _XTAL_FREQ 500000
 #endif
@@ -16,9 +19,26 @@
 #include "config.h"
 #include "sensor.h"
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <xc.h>
+
+//A data package typically has 2 or if extended 3 bytes
+//The first 7 bits contain the sensor index
+//The 8th indicates whether an extended value is being created
+//The next 8 bits are used for the value (if extended; value LSB)
+//If extended, the last 8 bits are used for the value MSB
+typedef struct package_t
+{
+    union {                             
+        struct{
+            unsigned char index             : 7;
+            unsigned char extended          : 1;
+        };
+        unsigned char first;
+    };
+    
+    unsigned char value;
+    unsigned char extended_value;
+} Package;
 
 void initialize_PIC(void);
 void initialize_sensors(void);
@@ -40,10 +60,10 @@ Sensor sensors[SENSOR_COUNT];
 char should_autobaud = 0;
 
 int main(void) {    
-    initialize_PIC();            //Initialize the PIC
+    initialize_PIC();                   //Initialize the PIC
     initialize_sensors();
     
-     while(1){
+    while(1){
         if(should_autobaud){ //AutoBaud detection takes time, so do it over here and not in ISR
             autoBaud();                 //Initiate AutoBaud
             UART_write_text("V");       // Send initialization and AutoBaud success
@@ -66,15 +86,32 @@ int main(void) {
         } 
     }
     
-    return (EXIT_SUCCESS);      
+    return 0;      
+}
+
+//Creates a data package
+Package create_package(unsigned char index, unsigned short value, unsigned char extended){
+    Package package;
+    
+    package.index = index;
+    package.extended = extended ? 1 : 0;
+    package.value = value;
+    package.extended_value = value >> 8;
+    
+    return package;
 }
 
 void default_handler(Sensor *sensor){
-    
+    Package package = create_package(sensor->index, Sensor_get_value(sensor), FALSE);
+    UART_write(package.first);
+    UART_write(package.value);
 }
 
 void temperature_handler(Sensor *sensor){
-   // ADRES
+    Package package = create_package(sensor->index, ADRES, TRUE);
+    UART_write(package.first);
+    UART_write(package.value);
+    UART_write(package.extended_value);
 }
 
 void switch_handler(Sensor *sensor){
@@ -202,8 +239,8 @@ void initialize_PIC(void){
 void initialize_sensors(void){
     for(int i = 0; i < SENSOR_COUNT; ++i){
         sensors[i].index = i;
-        sensors[i].debounce.port = &PORTA;
-        sensors[i].debounce.pin = i;
+        sensors[i].port = &PORTA;
+        sensors[i].pin = i;
         sensors[i].handler = default_handler;
     }
     
@@ -285,7 +322,7 @@ void interrupt ISR(void) {
         T6CONbits.TMR6ON = 0;                                           //Disable TIMER6
         
         for(int i = 0; i < SENSOR_COUNT; ++i){                          //Iterate all sensors
-            process_debounce(&sensors[i]);
+            Sensor_post_debounce(&sensors[i]);
         }
         
         TMR6IF = 0;                                                     //Clear the TIMER4 Interrupt flag
@@ -316,35 +353,35 @@ void interrupt ISR(void) {
     //Smoke detector interrupt handler
     if(IOCAFbits.IOCAF1){                   
         shouldDebounce = 1;
-        enable_debounce(&sensors[1]);
+        Sensor_pre_debounce(&sensors[1]);
         IOCAFbits.IOCAF1 = 0;                                           //Clear the Interrupt_On_Change flag
     }
     
     //Switch(sync baud) interrupt handler
     if(IOCAFbits.IOCAF2){  
         shouldDebounce = 1;
-        enable_debounce(&sensors[2]);
+        Sensor_pre_debounce(&sensors[2]);
         IOCAFbits.IOCAF2 = 0;                                           //Clear the Interrupt_On_Change flag
     }
     
     //Contact sensor 1 interrupt handler
     if(IOCAFbits.IOCAF3){
         shouldDebounce = 1;
-        enable_debounce(&sensors[3]);
+        Sensor_pre_debounce(&sensors[3]);
         IOCAFbits.IOCAF3 = 0;                                           //Clear the Interrupt_On_Change flag 
     }
     
     //Infrared sensor interrupt handler
     if(IOCAFbits.IOCAF4){   
         shouldDebounce = 1;
-        enable_debounce(&sensors[4]);
+        Sensor_pre_debounce(&sensors[4]);
         IOCAFbits.IOCAF4 = 0;                                           //Clear the Interrupt_On_Change flag
     }
     
     //Contact sensor 2 interrupt handler
     if(IOCAFbits.IOCAF5){
         shouldDebounce = 1;
-        enable_debounce(&sensors[5]);
+        Sensor_pre_debounce(&sensors[5]);
         IOCAFbits.IOCAF5 = 0;                                           //Clear the Interrupt_On_Change flag 
     }
     
