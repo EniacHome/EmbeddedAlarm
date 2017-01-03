@@ -3947,13 +3947,14 @@ extern __bit __timeout;
 
 # 6 "sensor.h"
 typedef struct sensor_t{
-unsigned char *port;
-unsigned char pin;
-void (*handler)(void);
+unsigned char index;
+void (*handler)(struct sensor_t *sensor);
 
 struct debounce_t {
 unsigned char should_debounce : 1;
 unsigned char previous_state : 1;
+unsigned char pin : 3;
+unsigned char *port;
 } debounce;
 } Sensor;
 
@@ -4097,12 +4098,13 @@ extern char * ftoa(float f, int * status);
 void initialize_PIC(void);
 void initialize_sensors(void);
 void autoBaud(void);
-void default_handler(void);
-void switch_handler(void);
+void default_handler(Sensor *sensor);
+void temperature_handler(Sensor *sensor);
+void switch_handler(Sensor *sensor);
 void UART_write_text(char *text);
-void UART_write(char date);
+void UART_write(char data);
 
-# 38
+# 39
 Sensor sensors[6];
 char should_autobaud = 0;
 
@@ -4136,15 +4138,15 @@ RCSTAbits.SPEN = 1;
 return (0);
 }
 
-void default_handler(void){
-UART_write_text("xy");
-}
-
-void temperature_handler(void){
+void default_handler(Sensor *sensor){
 
 }
 
-void switch_handler(void){
+void temperature_handler(Sensor *sensor){
+
+}
+
+void switch_handler(Sensor *sensor){
 should_autobaud = 1;
 }
 
@@ -4165,10 +4167,10 @@ UART_write(text[count]);
 
 void initialize_PIC(void){
 
-# 104
+# 105
 OSCCON = 0b00111000;
 
-# 115
+# 116
 INTCON = 0b11001000;
 
 
@@ -4209,10 +4211,10 @@ IOCANbits.IOCAN4 = 1;
 IOCAPbits.IOCAP3 = 1;
 IOCAPbits.IOCAP5 = 1;
 
-# 160
+# 161
 ADCON0 = 0b00000001;
 
-# 167
+# 168
 ADCON1 = 0b10000000;
 
 PIR1bits.ADIF = 0;
@@ -4222,7 +4224,7 @@ PIE1bits.ADIE = 1;
 T2CON = 0b01111111;
 PIE1bits.TMR2IE = 1;
 
-# 181
+# 182
 T6CON = 0b00100000;
 PR6 = 125;
 PIE3bits.TMR6IE = 1;
@@ -4245,8 +4247,9 @@ PIE1bits.RCIE = 1;
 
 void initialize_sensors(void){
 for(int i = 0; i < 6; ++i){
-sensors[i].port = &PORTA;
-sensors[i].pin = i + 1;
+sensors[i].index = i;
+sensors[i].debounce.port = &PORTA;
+sensors[i].debounce.pin = i;
 sensors[i].handler = default_handler;
 }
 
@@ -4337,10 +4340,8 @@ TMR6IF = 0;
 
 
 if(ADIF){
-sensors[0].handler();
-char str[15];
-sprintf(str," %d", ADRES);
-UART_write_text(str);
+sensors[0].handler(&sensors[0]);
+
 ADCON0bits.GO = 0;
 ADIF = 0;
 }

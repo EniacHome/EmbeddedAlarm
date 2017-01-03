@@ -11,46 +11,40 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\larsg\AppData\Local\Temp\suoc.obj
+$C:\Users\larsg\AppData\Local\Temp\sbac.obj
 reset_vec CODE 0 0 0 2 2
-end_init CODE 0 BE BE 2 2
+end_init CODE 0 A1 A1 2 2
 config CONFIG 0 8007 8007 2 2
 $dist/default/production\EmbeddedAlarm.production.obj
-cinit CODE 0 C0 C0 B 2
-text1 CODE 0 207 207 5F 2
-text2 CODE 0 3CC 3CC 12 2
-text3 CODE 0 266 266 4A 2
-text4 CODE 0 198 198 6F 2
-text5 CODE 0 383 383 1C 2
-text6 CODE 0 3FD 3FD A 2
-text8 CODE 0 3DE 3DE 11 2
-text9 CODE 0 CB CB CD 2
-text10 CODE 0 313 313 2C 2
-text11 CODE 0 2B0 2B0 34 2
-text12 CODE 0 2E4 2E4 2F 2
-text13 CODE 0 41B 41B 4 2
-text14 CODE 0 407 407 7 2
-text15 CODE 0 41F 41F 1 2
-text16 CODE 0 39F 39F 1A 2
-text17 CODE 0 40E 40E 7 2
-text18 CODE 0 363 363 20 2
-text19 CODE 0 3EF 3EF E 2
-maintext CODE 0 33F 33F 24 2
+cinit CODE 0 A3 A3 B 2
+text1 CODE 0 AE AE 74 2
+text2 CODE 0 279 279 12 2
+text3 CODE 0 191 191 4A 2
+text4 CODE 0 122 122 6F 2
+text5 CODE 0 25D 25D 1C 2
+text6 CODE 0 2AA 2AA A 2
+text8 CODE 0 28B 28B 11 2
+text9 CODE 0 1DB 1DB 38 2
+text10 CODE 0 2BA 2BA 4 2
+text11 CODE 0 2C0 2C0 1 2
+text12 CODE 0 2C1 2C1 1 2
+text13 CODE 0 213 213 26 2
+text14 CODE 0 29C 29C E 2
+maintext CODE 0 239 239 24 2
 cstackCOMMON COMMON 1 70 70 E 1
-cstackBANK0 BANK0 1 45 45 25 1
-cstackBANK1 BANK1 1 A0 A0 9 1
-intentry CODE 0 4 4 BA 2
+cstackBANK0 BANK0 1 45 45 9 1
+intentry CODE 0 4 4 9D 2
 bssBANK0 BANK0 1 20 20 25 1
-stringtext STRCODE 0 3B9 3B9 13 2
-clrtext CODE 0 415 415 6 2
+stringtext STRCODE 0 2BE 2BE 2 2
+clrtext CODE 0 2B4 2B4 6 2
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
 # is described on a single line as follows:
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 6A-6F 1
-RAM A9-EF 1
+RAM 4E-6F 1
+RAM A0-EF 1
 RAM 120-16F 1
 RAM 1A0-1EF 1
 RAM 220-26F 1
@@ -62,8 +56,8 @@ RAM 4A0-4EF 1
 RAM 520-56F 1
 RAM 5A0-5EF 1
 RAM 620-64F 1
-BANK0 6A-6F 1
-BANK1 A9-EF 1
+BANK0 4E-6F 1
+BANK1 A0-EF 1
 BANK2 120-16F 1
 BANK3 1A0-1EF 1
 BANK4 220-26F 1
@@ -73,9 +67,9 @@ BANK7 3A0-3EF 1
 BANK8 420-46F 1
 BANK9 4A0-4EF 1
 CONST 2-3 2
-CONST 420-1FFF 2
+CONST 2C2-1FFF 2
 ENTRY 2-3 2
-ENTRY 420-1FFF 2
+ENTRY 2C2-1FFF 2
 IDLOC 8000-8003 2
 SFR10 500-51F 1
 SFR11 580-59F 1
@@ -99,9 +93,9 @@ SFR28 E00-E6F 1
 SFR29 E80-EEF 1
 SFR30 F00-F6F 1
 SFR31 F80-FEF 1
-STACK 2059-23EF 1
+STACK 202E-23EF 1
 CODE 2-3 2
-CODE 420-1FFF 2
+CODE 2C2-1FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-11F 1
@@ -118,9 +112,9 @@ BANK12 620-64F 1
 BIGRAM 2000-23EF 1
 EEDATA F000-F0FF 2
 STRCODE 2-3 2
-STRCODE 420-1FFF 2
+STRCODE 2C2-1FFF 2
 STRING 2-3 2
-STRING 420-1FFF 2
+STRING 2C2-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -135,274 +129,214 @@ STRING 420-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\EmbeddedAlarm.production.obj
-C0 cinit CODE >862:C:\Users\larsg\AppData\Local\Temp\suoc.
-C0 cinit CODE >865:C:\Users\larsg\AppData\Local\Temp\suoc.
-C0 cinit CODE >892:C:\Users\larsg\AppData\Local\Temp\suoc.
-C1 cinit CODE >893:C:\Users\larsg\AppData\Local\Temp\suoc.
-C2 cinit CODE >894:C:\Users\larsg\AppData\Local\Temp\suoc.
-C3 cinit CODE >895:C:\Users\larsg\AppData\Local\Temp\suoc.
-C4 cinit CODE >896:C:\Users\larsg\AppData\Local\Temp\suoc.
-C5 cinit CODE >897:C:\Users\larsg\AppData\Local\Temp\suoc.
-C7 cinit CODE >903:C:\Users\larsg\AppData\Local\Temp\suoc.
-C7 cinit CODE >905:C:\Users\larsg\AppData\Local\Temp\suoc.
-C8 cinit CODE >906:C:\Users\larsg\AppData\Local\Temp\suoc.
-C9 cinit CODE >907:C:\Users\larsg\AppData\Local\Temp\suoc.
-4 intentry CODE >278:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-9 intentry CODE >279:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-B intentry CODE >282:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-D intentry CODE >283:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-F intentry CODE >285:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1D intentry CODE >286:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-2A intentry CODE >285:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-3A intentry CODE >289:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-3C intentry CODE >290:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-3C intentry CODE >294:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-3E intentry CODE >295:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-47 intentry CODE >297:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-58 intentry CODE >298:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-5F intentry CODE >299:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-61 intentry CODE >300:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-63 intentry CODE >305:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-65 intentry CODE >306:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-6B intentry CODE >307:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-6C intentry CODE >311:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-6E intentry CODE >312:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-70 intentry CODE >313:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-72 intentry CODE >314:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-72 intentry CODE >317:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-75 intentry CODE >318:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-7A intentry CODE >319:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-7E intentry CODE >320:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-80 intentry CODE >324:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-82 intentry CODE >325:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-87 intentry CODE >326:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-8B intentry CODE >327:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-8D intentry CODE >331:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-8F intentry CODE >332:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-94 intentry CODE >333:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-98 intentry CODE >334:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-9A intentry CODE >338:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-9C intentry CODE >339:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-A1 intentry CODE >340:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-A5 intentry CODE >341:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-A7 intentry CODE >345:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-A9 intentry CODE >346:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-AE intentry CODE >347:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-B1 intentry CODE >348:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-B3 intentry CODE >351:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-B6 intentry CODE >352:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-B7 intentry CODE >351:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-B8 intentry CODE >352:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-B9 intentry CODE >354:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-3EF text19 CODE >5:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
-3EF text19 CODE >6:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
-363 text18 CODE >9:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
-364 text18 CODE >10:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
-369 text18 CODE >11:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
-382 text18 CODE >12:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
-40E text17 CODE >83:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-40F text17 CODE >85:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-412 text17 CODE >86:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-414 text17 CODE >87:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-39F text16 CODE >89:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-39F text16 CODE >92:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-3AA text16 CODE >94:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-3B4 text16 CODE >92:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-41F text15 CODE >75:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-41F text15 CODE >77:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-407 text14 CODE >71:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-407 text14 CODE >72:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-40D text14 CODE >73:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-41B text13 CODE >79:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-41B text13 CODE >80:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-41E text13 CODE >81:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-2E4 text12 CODE >14:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
-2E5 text12 CODE >16:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
-304 text12 CODE >18:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
-30D text12 CODE >19:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
-2B0 text11 CODE >6:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwdiv.c
-2B0 text11 CODE >14:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwdiv.c
-2B2 text11 CODE >15:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwdiv.c
-2B6 text11 CODE >16:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwdiv.c
-2B8 text11 CODE >17:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwdiv.c
-2BA text11 CODE >18:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwdiv.c
-2BF text11 CODE >19:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwdiv.c
-2C3 text11 CODE >17:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwdiv.c
-2C4 text11 CODE >22:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwdiv.c
-2C9 text11 CODE >23:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwdiv.c
-2D1 text11 CODE >24:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwdiv.c
-2D5 text11 CODE >25:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwdiv.c
-2D6 text11 CODE >27:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwdiv.c
-2DB text11 CODE >28:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwdiv.c
-2DF text11 CODE >30:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwdiv.c
-313 text10 CODE >6:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwmod.c
-313 text10 CODE >13:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwmod.c
-317 text10 CODE >14:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwmod.c
-319 text10 CODE >15:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwmod.c
-31B text10 CODE >16:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwmod.c
-320 text10 CODE >17:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwmod.c
-324 text10 CODE >15:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwmod.c
-325 text10 CODE >20:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwmod.c
-32D text10 CODE >21:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwmod.c
-331 text10 CODE >22:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwmod.c
-336 text10 CODE >23:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwmod.c
-33A text10 CODE >25:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwmod.c
-CB text9 CODE >492:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
-CD text9 CODE >533:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
-D1 text9 CODE >536:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
-E3 text9 CODE >538:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
-E7 text9 CODE >541:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
-F2 text9 CODE >542:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
-F3 text9 CODE >548:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
-F4 text9 CODE >635:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
-10B text9 CODE >1259:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
-116 text9 CODE >1261:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
-118 text9 CODE >1262:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
-11C text9 CODE >1263:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
-121 text9 CODE >1305:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
-127 text9 CODE >1306:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
-13E text9 CODE >1305:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
-146 text9 CODE >1438:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
-14A text9 CODE >1439:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
-155 text9 CODE >1472:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
-159 text9 CODE >1474:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
-160 text9 CODE >1489:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
-187 text9 CODE >1524:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
-192 text9 CODE >1474:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
-193 text9 CODE >1538:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
-3DE text8 CODE >4:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
-3DF text8 CODE >6:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
-3E0 text8 CODE >43:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
-3E2 text8 CODE >44:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
-3E6 text8 CODE >45:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
-3E8 text8 CODE >46:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
-3EA text8 CODE >47:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
-3ED text8 CODE >50:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
-3FD text6 CODE >83:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-3FF text6 CODE >85:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-402 text6 CODE >86:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-406 text6 CODE >87:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-383 text5 CODE >89:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-383 text5 CODE >92:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-38F text5 CODE >94:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-399 text5 CODE >92:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-198 text4 CODE >215:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-199 text4 CODE >225:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-199 text4 CODE >226:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-19C text4 CODE >229:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-19C text4 CODE >230:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-19F text4 CODE >233:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-19F text4 CODE >234:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1A1 text4 CODE >235:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1A2 text4 CODE >236:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1A3 text4 CODE >237:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1A3 text4 CODE >238:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1A5 text4 CODE >239:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1A6 text4 CODE >241:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1A6 text4 CODE >243:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1A8 text4 CODE >244:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1AB text4 CODE >245:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1B1 text4 CODE >247:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1B6 text4 CODE >249:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1BA text4 CODE >253:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1BC text4 CODE >255:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1BD text4 CODE >223:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1D1 text4 CODE >256:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1D2 text4 CODE >257:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1D2 text4 CODE >258:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1D7 text4 CODE >264:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1E5 text4 CODE >266:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1E8 text4 CODE >267:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1ED text4 CODE >269:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1F2 text4 CODE >270:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-1FD text4 CODE >271:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-200 text4 CODE >272:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-201 text4 CODE >264:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-266 text3 CODE >98:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-266 text3 CODE >104:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-269 text3 CODE >115:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-26B text3 CODE >118:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-26C text3 CODE >119:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-26D text3 CODE >120:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-26E text3 CODE >121:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-26F text3 CODE >122:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-271 text3 CODE >125:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-273 text3 CODE >126:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-275 text3 CODE >129:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-277 text3 CODE >130:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-279 text3 CODE >133:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-27B text3 CODE >134:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-27D text3 CODE >137:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-27F text3 CODE >140:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-280 text3 CODE >141:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-282 text3 CODE >144:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-284 text3 CODE >147:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-286 text3 CODE >148:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-287 text3 CODE >149:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-288 text3 CODE >152:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-289 text3 CODE >153:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-28A text3 CODE >160:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-28D text3 CODE >167:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-28F text3 CODE >169:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-291 text3 CODE >170:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-293 text3 CODE >173:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-296 text3 CODE >174:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-298 text3 CODE >181:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-29B text3 CODE >182:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-29D text3 CODE >183:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-29F text3 CODE >186:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-2A1 text3 CODE >187:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-2A2 text3 CODE >189:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-2A4 text3 CODE >190:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-2A5 text3 CODE >191:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-2A9 text3 CODE >193:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-2AA text3 CODE >194:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-2AB text3 CODE >195:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-2AC text3 CODE >196:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-2AD text3 CODE >198:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-2AF text3 CODE >199:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-3CC text2 CODE >4:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
-3CE text2 CODE >6:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
-3CF text2 CODE >43:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
-3D1 text2 CODE >44:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
-3D5 text2 CODE >45:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
-3D7 text2 CODE >46:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
-3D9 text2 CODE >47:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
-3DC text2 CODE >50:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
-207 text1 CODE >201:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-207 text1 CODE >202:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-215 text1 CODE >203:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-22A text1 CODE >204:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-23C text1 CODE >205:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-24C text1 CODE >202:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-25C text1 CODE >209:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-261 text1 CODE >212:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-265 text1 CODE >213:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-33F maintext CODE >41:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-33F maintext CODE >42:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-342 maintext CODE >43:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-345 maintext CODE >46:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-349 maintext CODE >47:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-34C maintext CODE >48:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-354 maintext CODE >49:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-356 maintext CODE >50:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-357 maintext CODE >51:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-359 maintext CODE >55:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-35C maintext CODE >57:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-35D maintext CODE >58:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-35E maintext CODE >59:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-35E maintext CODE >61:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-360 maintext CODE >63:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-361 maintext CODE >64:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-362 maintext CODE >45:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
-415 clrtext CODE >881:C:\Users\larsg\AppData\Local\Temp\suoc.
-415 clrtext CODE >882:C:\Users\larsg\AppData\Local\Temp\suoc.
-416 clrtext CODE >883:C:\Users\larsg\AppData\Local\Temp\suoc.
-416 clrtext CODE >884:C:\Users\larsg\AppData\Local\Temp\suoc.
-417 clrtext CODE >885:C:\Users\larsg\AppData\Local\Temp\suoc.
-418 clrtext CODE >886:C:\Users\larsg\AppData\Local\Temp\suoc.
-419 clrtext CODE >887:C:\Users\larsg\AppData\Local\Temp\suoc.
-41A clrtext CODE >888:C:\Users\larsg\AppData\Local\Temp\suoc.
+A3 cinit CODE >819:C:\Users\larsg\AppData\Local\Temp\sbac.
+A3 cinit CODE >822:C:\Users\larsg\AppData\Local\Temp\sbac.
+A3 cinit CODE >849:C:\Users\larsg\AppData\Local\Temp\sbac.
+A4 cinit CODE >850:C:\Users\larsg\AppData\Local\Temp\sbac.
+A5 cinit CODE >851:C:\Users\larsg\AppData\Local\Temp\sbac.
+A6 cinit CODE >852:C:\Users\larsg\AppData\Local\Temp\sbac.
+A7 cinit CODE >853:C:\Users\larsg\AppData\Local\Temp\sbac.
+A8 cinit CODE >854:C:\Users\larsg\AppData\Local\Temp\sbac.
+AA cinit CODE >860:C:\Users\larsg\AppData\Local\Temp\sbac.
+AA cinit CODE >862:C:\Users\larsg\AppData\Local\Temp\sbac.
+AB cinit CODE >863:C:\Users\larsg\AppData\Local\Temp\sbac.
+AC cinit CODE >864:C:\Users\larsg\AppData\Local\Temp\sbac.
+4 intentry CODE >280:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+9 intentry CODE >281:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+B intentry CODE >284:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+D intentry CODE >285:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+F intentry CODE >287:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1C intentry CODE >288:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+28 intentry CODE >287:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+37 intentry CODE >291:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+39 intentry CODE >292:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+39 intentry CODE >296:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+3B intentry CODE >297:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+48 intentry CODE >299:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+4A intentry CODE >300:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+4C intentry CODE >305:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+4E intentry CODE >306:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+53 intentry CODE >307:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+55 intentry CODE >311:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+57 intentry CODE >312:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+59 intentry CODE >313:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+5B intentry CODE >314:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+5B intentry CODE >317:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+5E intentry CODE >318:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+62 intentry CODE >319:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+66 intentry CODE >320:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+68 intentry CODE >324:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+6A intentry CODE >325:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+6E intentry CODE >326:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+72 intentry CODE >327:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+74 intentry CODE >331:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+76 intentry CODE >332:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+7A intentry CODE >333:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+7E intentry CODE >334:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+80 intentry CODE >338:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+82 intentry CODE >339:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+86 intentry CODE >340:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+8A intentry CODE >341:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+8C intentry CODE >345:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+8E intentry CODE >346:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+92 intentry CODE >347:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+95 intentry CODE >348:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+97 intentry CODE >351:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+99 intentry CODE >352:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+9A intentry CODE >351:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+9B intentry CODE >352:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+9C intentry CODE >354:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+29C text14 CODE >5:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
+29C text14 CODE >6:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
+213 text13 CODE >9:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
+214 text13 CODE >10:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
+219 text13 CODE >11:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
+238 text13 CODE >12:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
+2C1 text12 CODE >76:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+2C1 text12 CODE >78:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+2C0 text11 CODE >72:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+2C0 text11 CODE >74:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+2BA text10 CODE >80:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+2BA text10 CODE >81:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+2BD text10 CODE >82:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1DB text9 CODE >14:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
+1DC text9 CODE >16:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
+201 text9 CODE >18:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
+20D text9 CODE >19:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\sensor.c
+28B text8 CODE >4:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
+28C text8 CODE >6:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
+28D text8 CODE >43:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
+28F text8 CODE >44:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
+293 text8 CODE >45:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
+295 text8 CODE >46:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
+297 text8 CODE >47:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
+29A text8 CODE >50:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
+2AA text6 CODE >84:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+2AC text6 CODE >86:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+2AF text6 CODE >87:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+2B3 text6 CODE >88:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+25D text5 CODE >90:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+25D text5 CODE >93:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+269 text5 CODE >95:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+273 text5 CODE >93:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+122 text4 CODE >217:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+123 text4 CODE >227:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+123 text4 CODE >228:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+126 text4 CODE >231:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+126 text4 CODE >232:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+129 text4 CODE >235:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+129 text4 CODE >236:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+12B text4 CODE >237:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+12C text4 CODE >238:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+12D text4 CODE >239:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+12D text4 CODE >240:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+12F text4 CODE >241:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+130 text4 CODE >243:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+130 text4 CODE >245:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+132 text4 CODE >246:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+135 text4 CODE >247:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+13B text4 CODE >249:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+140 text4 CODE >251:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+144 text4 CODE >255:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+146 text4 CODE >257:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+147 text4 CODE >225:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+15B text4 CODE >258:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+15C text4 CODE >259:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+15C text4 CODE >260:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+161 text4 CODE >266:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+16F text4 CODE >268:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+172 text4 CODE >269:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+177 text4 CODE >271:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+17C text4 CODE >272:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+187 text4 CODE >273:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+18A text4 CODE >274:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+18B text4 CODE >266:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+191 text3 CODE >99:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+191 text3 CODE >105:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+194 text3 CODE >116:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+196 text3 CODE >119:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+197 text3 CODE >120:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+198 text3 CODE >121:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+199 text3 CODE >122:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+19A text3 CODE >123:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+19C text3 CODE >126:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+19E text3 CODE >127:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1A0 text3 CODE >130:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1A2 text3 CODE >131:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1A4 text3 CODE >134:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1A6 text3 CODE >135:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1A8 text3 CODE >138:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1AA text3 CODE >141:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1AB text3 CODE >142:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1AD text3 CODE >145:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1AF text3 CODE >148:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1B1 text3 CODE >149:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1B2 text3 CODE >150:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1B3 text3 CODE >153:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1B4 text3 CODE >154:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1B5 text3 CODE >161:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1B8 text3 CODE >168:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1BA text3 CODE >170:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1BC text3 CODE >171:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1BE text3 CODE >174:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1C1 text3 CODE >175:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1C3 text3 CODE >182:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1C6 text3 CODE >183:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1C8 text3 CODE >184:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1CA text3 CODE >187:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1CC text3 CODE >188:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1CD text3 CODE >190:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1CF text3 CODE >191:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1D0 text3 CODE >192:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1D4 text3 CODE >194:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1D5 text3 CODE >195:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1D6 text3 CODE >196:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1D7 text3 CODE >197:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1D8 text3 CODE >199:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+1DA text3 CODE >200:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+279 text2 CODE >4:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
+27B text2 CODE >6:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
+27C text2 CODE >43:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
+27E text2 CODE >44:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
+282 text2 CODE >45:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
+284 text2 CODE >46:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
+286 text2 CODE >47:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
+289 text2 CODE >50:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul8.c
+AE text1 CODE >202:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+AE text1 CODE >203:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+BC text1 CODE >204:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+CD text1 CODE >205:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+E2 text1 CODE >206:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+F8 text1 CODE >207:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+108 text1 CODE >203:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+118 text1 CODE >211:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+11D text1 CODE >214:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+121 text1 CODE >215:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+239 maintext CODE >42:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+239 maintext CODE >43:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+23C maintext CODE >44:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+23F maintext CODE >47:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+243 maintext CODE >48:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+246 maintext CODE >49:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+24E maintext CODE >50:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+250 maintext CODE >51:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+251 maintext CODE >52:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+253 maintext CODE >56:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+256 maintext CODE >58:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+257 maintext CODE >59:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+258 maintext CODE >60:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+258 maintext CODE >62:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+25A maintext CODE >64:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+25B maintext CODE >65:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+25C maintext CODE >46:D:\Users\larsg\OneDrive\Documenten\School\2.1\Embedded Project\EmbeddedAlarm\main.c
+2B4 clrtext CODE >838:C:\Users\larsg\AppData\Local\Temp\sbac.
+2B4 clrtext CODE >839:C:\Users\larsg\AppData\Local\Temp\sbac.
+2B5 clrtext CODE >840:C:\Users\larsg\AppData\Local\Temp\sbac.
+2B5 clrtext CODE >841:C:\Users\larsg\AppData\Local\Temp\sbac.
+2B6 clrtext CODE >842:C:\Users\larsg\AppData\Local\Temp\sbac.
+2B7 clrtext CODE >843:C:\Users\larsg\AppData\Local\Temp\sbac.
+2B8 clrtext CODE >844:C:\Users\larsg\AppData\Local\Temp\sbac.
+2B9 clrtext CODE >845:C:\Users\larsg\AppData\Local\Temp\sbac.
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -416,89 +350,76 @@ F4 text9 CODE >635:D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\dop
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
 ___latbits 2 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-___lwmod@counter 7D 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
 __Hspace_0 8009 0 ABS 0 - -
-__Hspace_1 A9 0 ABS 0 - -
+__Hspace_1 7E 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __CFG_MCLRE$ON 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 __Lstringtext 0 0 ABS 0 stringtext -
-ISR@i 68 0 BANK0 1 cstackBANK0 dist/default/production\EmbeddedAlarm.production.obj
-ISR@x 65 0 BANK0 1 cstackBANK0 dist/default/production\EmbeddedAlarm.production.obj
+ISR@i 7C 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
+ISR@x 79 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
 __Hstrings 0 0 ABS 0 strings -
 _ADIF 8E 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 _LATC 10E 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 _TRMT CF1 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-___sp 0 0 STACK 2 stack C:\Users\larsg\AppData\Local\Temp\suoc.obj
-_main 67E 0 CODE 0 maintext dist/default/production\EmbeddedAlarm.production.obj
+___sp 0 0 STACK 2 stack C:\Users\larsg\AppData\Local\Temp\sbac.obj
+_main 472 0 CODE 0 maintext dist/default/production\EmbeddedAlarm.production.obj
 btemp 7E 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-_get_port_pin 7DE 0 CODE 0 text19 dist/default/production\EmbeddedAlarm.production.obj
-start 17C 0 CODE 0 init C:\Users\larsg\AppData\Local\Temp\suoc.obj
+_get_port_pin 538 0 CODE 0 text14 dist/default/production\EmbeddedAlarm.production.obj
+start 142 0 CODE 0 init C:\Users\larsg\AppData\Local\Temp\sbac.obj
 __size_of_main 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-__size_of___lwdiv 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-__size_of___lwmod 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-__end_of_switch_handler 83E 0 CODE 0 text13 dist/default/production\EmbeddedAlarm.production.obj
+__end_of_switch_handler 57C 0 CODE 0 text10 dist/default/production\EmbeddedAlarm.production.obj
 __size_of_default_handler 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 __Hpowerup 0 0 CODE 0 powerup -
 i1___bmul@multiplier 72 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
-initialize_sensors@i A7 0 BANK1 1 cstackBANK1 dist/default/production\EmbeddedAlarm.production.obj
-intlevel0 0 0 CODE 0 functab C:\Users\larsg\AppData\Local\Temp\suoc.obj
-intlevel1 0 0 CODE 0 functab C:\Users\larsg\AppData\Local\Temp\suoc.obj
-intlevel2 0 0 CODE 0 functab C:\Users\larsg\AppData\Local\Temp\suoc.obj
-intlevel3 0 0 CODE 0 functab C:\Users\larsg\AppData\Local\Temp\suoc.obj
-intlevel4 0 0 CODE 0 functab C:\Users\larsg\AppData\Local\Temp\suoc.obj
-intlevel5 0 0 CODE 0 functab C:\Users\larsg\AppData\Local\Temp\suoc.obj
-___bmul@multiplicand A0 0 BANK1 1 cstackBANK1 dist/default/production\EmbeddedAlarm.production.obj
+initialize_sensors@i 4C 0 BANK0 1 cstackBANK0 dist/default/production\EmbeddedAlarm.production.obj
+intlevel0 0 0 CODE 0 functab C:\Users\larsg\AppData\Local\Temp\sbac.obj
+intlevel1 0 0 CODE 0 functab C:\Users\larsg\AppData\Local\Temp\sbac.obj
+intlevel2 0 0 CODE 0 functab C:\Users\larsg\AppData\Local\Temp\sbac.obj
+intlevel3 0 0 CODE 0 functab C:\Users\larsg\AppData\Local\Temp\sbac.obj
+intlevel4 0 0 CODE 0 functab C:\Users\larsg\AppData\Local\Temp\sbac.obj
+intlevel5 0 0 CODE 0 functab C:\Users\larsg\AppData\Local\Temp\sbac.obj
+___bmul@multiplicand 45 0 BANK0 1 cstackBANK0 dist/default/production\EmbeddedAlarm.production.obj
 wtemp0 7E 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 __Hfunctab 0 0 CODE 0 functab -
 __size_of_get_port_pin 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-_UART_write 7FA 0 CODE 0 text6 dist/default/production\EmbeddedAlarm.production.obj
+_UART_write 554 0 CODE 0 text6 dist/default/production\EmbeddedAlarm.production.obj
 __Hclrtext 0 0 ABS 0 clrtext -
-__end_of_temperature_handler 840 0 CODE 0 text15 dist/default/production\EmbeddedAlarm.production.obj
+__end_of_temperature_handler 584 0 CODE 0 text12 dist/default/production\EmbeddedAlarm.production.obj
 __size_of_UART_write_text 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-__end_ofi1_UART_write_text 772 0 CODE 0 text16 dist/default/production\EmbeddedAlarm.production.obj
 _ADCON0 9D 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 _ADCON1 9E 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-autoBaud@sync_count A2 0 BANK1 1 cstackBANK1 dist/default/production\EmbeddedAlarm.production.obj
-process_debounce@sensor 77 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
-__end_of___bmul 7BC 0 CODE 0 text2 dist/default/production\EmbeddedAlarm.production.obj
-__end_of_get_port_pin 7FA 0 CODE 0 text19 dist/default/production\EmbeddedAlarm.production.obj
+autoBaud@sync_count 47 0 BANK0 1 cstackBANK0 dist/default/production\EmbeddedAlarm.production.obj
+process_debounce@sensor 76 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
+__end_of___bmul 516 0 CODE 0 text2 dist/default/production\EmbeddedAlarm.production.obj
+__end_of_get_port_pin 554 0 CODE 0 text14 dist/default/production\EmbeddedAlarm.production.obj
 __Lmaintext 0 0 ABS 0 maintext -
-__size_of_sprintf 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 _BAUDCONbits 19F 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-_process_debounce 5C8 0 CODE 0 text12 dist/default/production\EmbeddedAlarm.production.obj
-___bmul@multiplier A3 0 BANK1 1 cstackBANK1 dist/default/production\EmbeddedAlarm.production.obj
-___lwmod@divisor 78 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
-__end_of___lwdiv 5C8 0 CODE 0 text11 dist/default/production\EmbeddedAlarm.production.obj
-__end_of___lwmod 67E 0 CODE 0 text10 dist/default/production\EmbeddedAlarm.production.obj
+_process_debounce 3B6 0 CODE 0 text9 dist/default/production\EmbeddedAlarm.production.obj
+___bmul@multiplier 48 0 BANK0 1 cstackBANK0 dist/default/production\EmbeddedAlarm.production.obj
 _INTCON B 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-_dpowers 772 0 STRCODE 0 stringtext dist/default/production\EmbeddedAlarm.production.obj
 __size_ofi1___bmul 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-_initialize_PIC 4CC 0 CODE 0 text3 dist/default/production\EmbeddedAlarm.production.obj
-___lwdiv@quotient 75 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
-__end_of_UART_write 80E 0 CODE 0 text6 dist/default/production\EmbeddedAlarm.production.obj
-UART_write@data A0 0 BANK1 1 cstackBANK1 dist/default/production\EmbeddedAlarm.production.obj
-__end_of_initialize_sensors 4CC 0 CODE 0 text1 dist/default/production\EmbeddedAlarm.production.obj
-___lwmod@dividend 7A 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
-start_initialization 180 0 CODE 0 cinit dist/default/production\EmbeddedAlarm.production.obj
+_initialize_PIC 322 0 CODE 0 text3 dist/default/production\EmbeddedAlarm.production.obj
+__end_of_UART_write 568 0 CODE 0 text6 dist/default/production\EmbeddedAlarm.production.obj
+UART_write@data 45 0 BANK0 1 cstackBANK0 dist/default/production\EmbeddedAlarm.production.obj
+__end_of_initialize_sensors 244 0 CODE 0 text1 dist/default/production\EmbeddedAlarm.production.obj
+start_initialization 146 0 CODE 0 cinit dist/default/production\EmbeddedAlarm.production.obj
 _OSCCON 99 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 _TRISAbits 8C 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 _TRISCbits 8E 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 _should_autobaud 20 0 BANK0 1 bssBANK0 dist/default/production\EmbeddedAlarm.production.obj
 i1___bmul@multiplicand 70 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
-clear_ram0 82A 0 CODE 0 clrtext dist/default/production\EmbeddedAlarm.production.obj
+clear_ram0 568 0 CODE 0 clrtext dist/default/production\EmbeddedAlarm.production.obj
 _SPBRGH 19C 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 __pcstackBANK0 45 0 BANK0 1 cstackBANK0 dist/default/production\EmbeddedAlarm.production.obj
-__pcstackBANK1 A0 0 BANK1 1 cstackBANK1 dist/default/production\EmbeddedAlarm.production.obj
 _TMR6IF 9B 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-i1_UART_write_text 73E 0 CODE 0 text16 dist/default/production\EmbeddedAlarm.production.obj
-enable_debounce@sensor 75 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
-_initialize_sensors 40E 0 CODE 0 text1 dist/default/production\EmbeddedAlarm.production.obj
+enable_debounce@sensor 76 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
+_initialize_sensors 15C 0 CODE 0 text1 dist/default/production\EmbeddedAlarm.production.obj
 i1___bmul@product 73 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
-___int_sp 0 0 STACK 2 stack C:\Users\larsg\AppData\Local\Temp\suoc.obj
-__end_of_initialize_PIC 560 0 CODE 0 text3 dist/default/production\EmbeddedAlarm.production.obj
-i1___bmul 7BC 0 CODE 0 text8 dist/default/production\EmbeddedAlarm.production.obj
+___int_sp 0 0 STACK 2 stack C:\Users\larsg\AppData\Local\Temp\sbac.obj
+__end_of_initialize_PIC 3B6 0 CODE 0 text3 dist/default/production\EmbeddedAlarm.production.obj
+i1___bmul 516 0 CODE 0 text8 dist/default/production\EmbeddedAlarm.production.obj
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -509,7 +430,7 @@ __Hbank6 0 0 ABS 0 bank6 -
 __Hbank7 0 0 ABS 0 bank7 -
 __Hbank8 0 0 ABS 0 bank8 -
 __Hbank9 0 0 ABS 0 bank9 -
-__Hcinit 196 0 CODE 0 cinit -
+__Hcinit 15C 0 CODE 0 cinit -
 __Hidloc 0 0 IDLOC 0 idloc -
 __Hsfr10 0 0 ABS 0 sfr10 -
 __Hsfr11 0 0 ABS 0 sfr11 -
@@ -534,7 +455,6 @@ __Hsfr29 0 0 ABS 0 sfr29 -
 __Hsfr30 0 0 ABS 0 sfr30 -
 __Hsfr31 0 0 ABS 0 sfr31 -
 __Hstack 0 0 STACK 2 stack -
-___lwdiv@counter 77 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
 __Hbank10 0 0 ABS 0 bank10 -
 __Hbank11 0 0 ABS 0 bank11 -
 __Hbank12 0 0 ABS 0 bank12 -
@@ -559,12 +479,11 @@ __Hbank30 0 0 BANK30 1 bank30 -
 __Hbank31 0 0 BANK31 1 bank31 -
 __Hbigram 0 0 ABS 0 bigram -
 __Hmaintext 0 0 ABS 0 maintext -
-__end_of_process_debounce 626 0 CODE 0 text12 dist/default/production\EmbeddedAlarm.production.obj
-__end_of_sprintf 330 0 CODE 0 text9 dist/default/production\EmbeddedAlarm.production.obj
+__end_of_process_debounce 426 0 CODE 0 text9 dist/default/production\EmbeddedAlarm.production.obj
 __CFG_FOSC$INTOSC 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 __Hcommon 0 0 ABS 0 common -
 __Hconfig 10012 0 CONFIG 0 config -
-__end_ofi1___bmul 7DE 0 CODE 0 text8 dist/default/production\EmbeddedAlarm.production.obj
+__end_ofi1___bmul 538 0 CODE 0 text8 dist/default/production\EmbeddedAlarm.production.obj
 __Lbank0 0 0 ABS 0 bank0 -
 __Lbank1 0 0 ABS 0 bank1 -
 __Lbank2 0 0 ABS 0 bank2 -
@@ -575,7 +494,7 @@ __Lbank6 0 0 ABS 0 bank6 -
 __Lbank7 0 0 ABS 0 bank7 -
 __Lbank8 0 0 ABS 0 bank8 -
 __Lbank9 0 0 ABS 0 bank9 -
-__Lcinit 180 0 CODE 0 cinit -
+__Lcinit 146 0 CODE 0 cinit -
 __size_of_process_debounce 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 __Lidloc 0 0 IDLOC 0 idloc -
 __Lsfr10 0 0 ABS 0 sfr10 -
@@ -603,7 +522,7 @@ __Lsfr31 0 0 ABS 0 sfr31 -
 __Lstack 0 0 STACK 2 stack -
 __Habs1 0 0 ABS 0 abs1 -
 __Hcode 0 0 ABS 0 code -
-__Hinit 17C 0 CODE 0 init -
+__Hinit 142 0 CODE 0 init -
 __Hsfr0 0 0 ABS 0 sfr0 -
 __Hsfr1 0 0 ABS 0 sfr1 -
 __Hsfr2 0 0 ABS 0 sfr2 -
@@ -617,7 +536,7 @@ __Hsfr9 0 0 ABS 0 sfr9 -
 __Htext 0 0 ABS 0 text -
 __Labs1 0 0 ABS 0 abs1 -
 __Lcode 0 0 ABS 0 code -
-__Linit 17C 0 CODE 0 init -
+__Linit 142 0 CODE 0 init -
 __Lsfr0 0 0 ABS 0 sfr0 -
 __Lsfr1 0 0 ABS 0 sfr1 -
 __Lsfr2 0 0 ABS 0 sfr2 -
@@ -629,52 +548,40 @@ __Lsfr7 0 0 ABS 0 sfr7 -
 __Lsfr8 0 0 ABS 0 sfr8 -
 __Lsfr9 0 0 ABS 0 sfr9 -
 __Ltext 0 0 ABS 0 text -
-___bmul 798 0 CODE 0 text2 dist/default/production\EmbeddedAlarm.production.obj
+___bmul 4F2 0 CODE 0 text2 dist/default/production\EmbeddedAlarm.production.obj
 __LcstackBANK0 0 0 ABS 0 cstackBANK0 -
-__LcstackBANK1 0 0 ABS 0 cstackBANK1 -
 int$flags 7E 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 _ISR 8 0 CODE 0 intentry dist/default/production\EmbeddedAlarm.production.obj
 _PR6 41D 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 __S0 8009 0 ABS 0 - -
-__S1 A9 0 ABS 0 - -
+__S1 7E 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
 __size_of_switch_handler 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-__end_of_enable_debounce 706 0 CODE 0 text18 dist/default/production\EmbeddedAlarm.production.obj
-sprintf@val 50 0 BANK0 1 cstackBANK0 dist/default/production\EmbeddedAlarm.production.obj
+__end_of_enable_debounce 472 0 CODE 0 text13 dist/default/production\EmbeddedAlarm.production.obj
 get_port_pin@pin 72 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
-__end_of_ISR 17C 0 CODE 0 intentry dist/default/production\EmbeddedAlarm.production.obj
+__end_of_ISR 142 0 CODE 0 intentry dist/default/production\EmbeddedAlarm.production.obj
 __CFG_BOREN$ON 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\larsg\AppData\Local\Temp\suoc.obj
+reset_vec 0 0 CODE 0 reset_vec C:\Users\larsg\AppData\Local\Temp\sbac.obj
 __size_of___bmul 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 __LbssBANK0 0 0 ABS 0 bssBANK0 -
 __CFG_FCMEN$ON 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-i1_UART_write 81C 0 CODE 0 text17 dist/default/production\EmbeddedAlarm.production.obj
 _IOCAFbits 393 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 _IOCANbits 392 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 _IOCAPbits 391 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 _RCSTAbits 19D 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 _PIE1bits 91 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 _PIE3bits 93 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-UART_write_text@text A1 0 BANK1 1 cstackBANK1 dist/default/production\EmbeddedAlarm.production.obj
-sprintf@flag 4E 0 BANK0 1 cstackBANK0 dist/default/production\EmbeddedAlarm.production.obj
-sprintf@prec 4F 0 BANK0 1 cstackBANK0 dist/default/production\EmbeddedAlarm.production.obj
+UART_write_text@text 46 0 BANK0 1 cstackBANK0 dist/default/production\EmbeddedAlarm.production.obj
 __size_of_UART_write 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-__ptext10 626 0 CODE 0 text10 dist/default/production\EmbeddedAlarm.production.obj
-__ptext11 560 0 CODE 0 text11 dist/default/production\EmbeddedAlarm.production.obj
-__ptext12 5C8 0 CODE 0 text12 dist/default/production\EmbeddedAlarm.production.obj
-__ptext13 836 0 CODE 0 text13 dist/default/production\EmbeddedAlarm.production.obj
-__ptext14 80E 0 CODE 0 text14 dist/default/production\EmbeddedAlarm.production.obj
-__ptext15 83E 0 CODE 0 text15 dist/default/production\EmbeddedAlarm.production.obj
-__ptext16 73E 0 CODE 0 text16 dist/default/production\EmbeddedAlarm.production.obj
-__ptext17 81C 0 CODE 0 text17 dist/default/production\EmbeddedAlarm.production.obj
-__ptext18 6C6 0 CODE 0 text18 dist/default/production\EmbeddedAlarm.production.obj
-__ptext19 7DE 0 CODE 0 text19 dist/default/production\EmbeddedAlarm.production.obj
-autoBaud@index A4 0 BANK1 1 cstackBANK1 dist/default/production\EmbeddedAlarm.production.obj
-___lwdiv 560 0 CODE 0 text11 dist/default/production\EmbeddedAlarm.production.obj
-___lwmod 626 0 CODE 0 text10 dist/default/production\EmbeddedAlarm.production.obj
+__ptext10 574 0 CODE 0 text10 dist/default/production\EmbeddedAlarm.production.obj
+__ptext11 580 0 CODE 0 text11 dist/default/production\EmbeddedAlarm.production.obj
+__ptext12 582 0 CODE 0 text12 dist/default/production\EmbeddedAlarm.production.obj
+__ptext13 426 0 CODE 0 text13 dist/default/production\EmbeddedAlarm.production.obj
+__ptext14 538 0 CODE 0 text14 dist/default/production\EmbeddedAlarm.production.obj
+autoBaud@index 49 0 BANK0 1 cstackBANK0 dist/default/production\EmbeddedAlarm.production.obj
 __Lbank10 0 0 ABS 0 bank10 -
 __Lbank11 0 0 ABS 0 bank11 -
 __Lbank12 0 0 ABS 0 bank12 -
@@ -697,21 +604,19 @@ __Lbank28 0 0 BANK28 1 bank28 -
 __Lbank29 0 0 BANK29 1 bank29 -
 __Lbank30 0 0 BANK30 1 bank30 -
 __Lbank31 0 0 BANK31 1 bank31 -
-__pmaintext 67E 0 CODE 0 maintext dist/default/production\EmbeddedAlarm.production.obj
+__pmaintext 472 0 CODE 0 maintext dist/default/production\EmbeddedAlarm.production.obj
 __Lbigram 0 0 ABS 0 bigram -
 __CFG_BORV$LO 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-_enable_debounce 6C6 0 CODE 0 text18 dist/default/production\EmbeddedAlarm.production.obj
+_enable_debounce 426 0 CODE 0 text13 dist/default/production\EmbeddedAlarm.production.obj
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 1000E 0 CONFIG 0 config -
 __CFG_CP$OFF 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 __CFG_IESO$ON 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 __CFG_WDTE$OFF 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 _T6CONbits 41E 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-___lwdiv@divisor 70 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
-stackhi 23EF 0 ABS 0 - C:\Users\larsg\AppData\Local\Temp\suoc.obj
-stacklo 2059 0 ABS 0 - C:\Users\larsg\AppData\Local\Temp\suoc.obj
+stackhi 23EF 0 ABS 0 - C:\Users\larsg\AppData\Local\Temp\sbac.obj
+stacklo 202E 0 ABS 0 - C:\Users\larsg\AppData\Local\Temp\sbac.obj
 _sensors 21 0 BANK0 1 bssBANK0 dist/default/production\EmbeddedAlarm.production.obj
-__size_ofi1_UART_write 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 _ADCON0bits 9D 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 get_port_pin@port 70 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
 __Lspace_0 0 0 ABS 0 - -
@@ -719,68 +624,52 @@ __Lspace_1 0 0 ABS 0 - -
 __Lspace_2 0 0 ABS 0 - -
 __Lspace_3 0 0 ABS 0 - -
 __HcstackBANK0 0 0 ABS 0 cstackBANK0 -
-__HcstackBANK1 0 0 ABS 0 cstackBANK1 -
 _PIR1bits 11 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 _PIR3bits 13 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-__Lend_init 17C 0 CODE 0 end_init -
+__Lend_init 142 0 CODE 0 end_init -
 __CFG_LVP$ON 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-end_of_initialization 18E 0 CODE 0 cinit dist/default/production\EmbeddedAlarm.production.obj
-__Hintentry 17C 0 CODE 0 intentry -
+end_of_initialization 154 0 CODE 0 cinit dist/default/production\EmbeddedAlarm.production.obj
+__Hintentry 142 0 CODE 0 intentry -
 __CFG_STVREN$ON 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-i1UART_write@data 70 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
 __Lstrings 0 0 ABS 0 strings -
-ISR@str 56 0 BANK0 1 cstackBANK0 dist/default/production\EmbeddedAlarm.production.obj
-___lwdiv@dividend 72 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
-?___lwdiv 70 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
-?___lwmod 78 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
 __size_of_initialize_sensors 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-__end_ofi1_UART_write 82A 0 CODE 0 text17 dist/default/production\EmbeddedAlarm.production.obj
-i1UART_write_text@count 74 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
 __Hreset_vec 4 0 CODE 0 reset_vec -
 __HbssBANK0 0 0 ABS 0 bssBANK0 -
-__ptext1 40E 0 CODE 0 text1 dist/default/production\EmbeddedAlarm.production.obj
-__ptext2 798 0 CODE 0 text2 dist/default/production\EmbeddedAlarm.production.obj
-__ptext3 4CC 0 CODE 0 text3 dist/default/production\EmbeddedAlarm.production.obj
-__ptext4 330 0 CODE 0 text4 dist/default/production\EmbeddedAlarm.production.obj
-__ptext5 706 0 CODE 0 text5 dist/default/production\EmbeddedAlarm.production.obj
-__ptext6 7FA 0 CODE 0 text6 dist/default/production\EmbeddedAlarm.production.obj
-__ptext8 7BC 0 CODE 0 text8 dist/default/production\EmbeddedAlarm.production.obj
-__ptext9 196 0 CODE 0 text9 dist/default/production\EmbeddedAlarm.production.obj
-__end_of_default_handler 81C 0 CODE 0 text14 dist/default/production\EmbeddedAlarm.production.obj
-_sprintf 196 0 CODE 0 text9 dist/default/production\EmbeddedAlarm.production.obj
+__ptext1 15C 0 CODE 0 text1 dist/default/production\EmbeddedAlarm.production.obj
+__ptext2 4F2 0 CODE 0 text2 dist/default/production\EmbeddedAlarm.production.obj
+__ptext3 322 0 CODE 0 text3 dist/default/production\EmbeddedAlarm.production.obj
+__ptext4 244 0 CODE 0 text4 dist/default/production\EmbeddedAlarm.production.obj
+__ptext5 4BA 0 CODE 0 text5 dist/default/production\EmbeddedAlarm.production.obj
+__ptext6 554 0 CODE 0 text6 dist/default/production\EmbeddedAlarm.production.obj
+__ptext8 516 0 CODE 0 text8 dist/default/production\EmbeddedAlarm.production.obj
+__ptext9 3B6 0 CODE 0 text9 dist/default/production\EmbeddedAlarm.production.obj
+__end_of_default_handler 582 0 CODE 0 text11 dist/default/production\EmbeddedAlarm.production.obj
 __Lpowerup 0 0 CODE 0 powerup -
 _APFCON0bits 11D 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
-__pstringtext 772 0 STRCODE 0 stringtext dist/default/production\EmbeddedAlarm.production.obj
-sprintf@ap 4D 0 BANK0 1 cstackBANK0 dist/default/production\EmbeddedAlarm.production.obj
-sprintf@sp 52 0 BANK0 1 cstackBANK0 dist/default/production\EmbeddedAlarm.production.obj
-i1UART_write_text@text 71 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
+__pstringtext 57C 0 STRCODE 0 stringtext dist/default/production\EmbeddedAlarm.production.obj
 __size_of_enable_debounce 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 __Lreset_vec 0 0 CODE 0 reset_vec -
 __CFG_CLKOUTEN$OFF 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 __size_of_initialize_PIC 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 __size_of_autoBaud 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-__end_of__initialization 18E 0 CODE 0 cinit dist/default/production\EmbeddedAlarm.production.obj
+__end_of__initialization 154 0 CODE 0 cinit dist/default/production\EmbeddedAlarm.production.obj
 __Lfunctab 0 0 CODE 0 functab -
 __Lclrtext 0 0 ABS 0 clrtext -
 __size_of_temperature_handler 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 __CFG_PLLEN$OFF 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-UART_write_text@count A4 0 BANK1 1 cstackBANK1 dist/default/production\EmbeddedAlarm.production.obj
-__end_of_UART_write_text 73E 0 CODE 0 text5 dist/default/production\EmbeddedAlarm.production.obj
-autoBaud@discard A1 0 BANK1 1 cstackBANK1 dist/default/production\EmbeddedAlarm.production.obj
+UART_write_text@count 49 0 BANK0 1 cstackBANK0 dist/default/production\EmbeddedAlarm.production.obj
+__end_of_UART_write_text 4F2 0 CODE 0 text5 dist/default/production\EmbeddedAlarm.production.obj
+autoBaud@discard 46 0 BANK0 1 cstackBANK0 dist/default/production\EmbeddedAlarm.production.obj
 __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
 _TXSTAbits 19E 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-__Hend_init 180 0 CODE 0 end_init -
-ISR@shouldDebounce 66 0 BANK0 1 cstackBANK0 dist/default/production\EmbeddedAlarm.production.obj
-_default_handler 80E 0 CODE 0 text14 dist/default/production\EmbeddedAlarm.production.obj
-sprintf@c 53 0 BANK0 1 cstackBANK0 dist/default/production\EmbeddedAlarm.production.obj
-sprintf@f 45 0 BANK0 1 cstackBANK0 dist/default/production\EmbeddedAlarm.production.obj
-__end_of_main 6C6 0 CODE 0 maintext dist/default/production\EmbeddedAlarm.production.obj
-_ADRES 9B 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
+__Hend_init 146 0 CODE 0 end_init -
+ISR@shouldDebounce 7A 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
+_default_handler 580 0 CODE 0 text11 dist/default/production\EmbeddedAlarm.production.obj
+__end_of_main 4BA 0 CODE 0 maintext dist/default/production\EmbeddedAlarm.production.obj
+switch_handler@sensor 70 0 COMMON 1 cstackCOMMON dist/default/production\EmbeddedAlarm.production.obj
 _BRG16 CFB 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-__end_of_dpowers 786 0 STRCODE 0 stringtext dist/default/production\EmbeddedAlarm.production.obj
-?_sprintf 45 0 BANK0 1 cstackBANK0 dist/default/production\EmbeddedAlarm.production.obj
 _PORTA C 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 _RCREG 199 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 _SPBRG 19B 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
@@ -792,19 +681,18 @@ __Lram 0 0 ABS 0 ram -
 __CFG_CPD$OFF 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 __pintentry 8 0 CODE 0 intentry dist/default/production\EmbeddedAlarm.production.obj
 __size_of_ISR 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-_switch_handler 836 0 CODE 0 text13 dist/default/production\EmbeddedAlarm.production.obj
-__initialization 180 0 CODE 0 cinit dist/default/production\EmbeddedAlarm.production.obj
-___bmul@product A2 0 BANK1 1 cstackBANK1 dist/default/production\EmbeddedAlarm.production.obj
+_switch_handler 574 0 CODE 0 text10 dist/default/production\EmbeddedAlarm.production.obj
+__initialization 146 0 CODE 0 cinit dist/default/production\EmbeddedAlarm.production.obj
+___bmul@product 47 0 BANK0 1 cstackBANK0 dist/default/production\EmbeddedAlarm.production.obj
 __CFG_PWRTE$OFF 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
 __pbssBANK0 20 0 BANK0 1 bssBANK0 dist/default/production\EmbeddedAlarm.production.obj
-_autoBaud 330 0 CODE 0 text4 dist/default/production\EmbeddedAlarm.production.obj
-__size_ofi1_UART_write_text 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
+_autoBaud 244 0 CODE 0 text4 dist/default/production\EmbeddedAlarm.production.obj
 __Hstringtext 0 0 ABS 0 stringtext -
 __CFG_WRT$OFF 0 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-_temperature_handler 83E 0 CODE 0 text15 dist/default/production\EmbeddedAlarm.production.obj
+_temperature_handler 582 0 CODE 0 text12 dist/default/production\EmbeddedAlarm.production.obj
 _ANSELAbits 18C 0 ABS 0 - dist/default/production\EmbeddedAlarm.production.obj
-_UART_write_text 706 0 CODE 0 text5 dist/default/production\EmbeddedAlarm.production.obj
-__end_of_autoBaud 40E 0 CODE 0 text4 dist/default/production\EmbeddedAlarm.production.obj
+_UART_write_text 4BA 0 CODE 0 text5 dist/default/production\EmbeddedAlarm.production.obj
+__end_of_autoBaud 322 0 CODE 0 text4 dist/default/production\EmbeddedAlarm.production.obj
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -830,11 +718,10 @@ __end_of_autoBaud 40E 0 CODE 0 text4 dist/default/production\EmbeddedAlarm.produ
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-text2 0 3CC 798 54 2
+text11 0 2C0 580 2 2
 cstackCOMMON 1 70 70 E 1
-cstackBANK1 1 A0 A0 9 1
-intentry 0 4 8 3B5 2
+intentry 0 4 8 2BA 2
 reset_vec 0 0 0 2 2
-bssBANK0 1 20 20 4A 1
-stringtext 0 3B9 772 13 2
+bssBANK0 1 20 20 2E 1
+stringtext 0 2BE 57C 2 2
 config 0 8007 1000E 2 2

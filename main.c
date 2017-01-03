@@ -23,10 +23,11 @@
 void initialize_PIC(void);
 void initialize_sensors(void);
 void autoBaud(void);
-void default_handler(void);
-void switch_handler(void);
+void default_handler(Sensor *sensor);
+void temperature_handler(Sensor *sensor);
+void switch_handler(Sensor *sensor);
 void UART_write_text(char *text);
-void UART_write(char date);
+void UART_write(char data);
 
 //Sensor layout:
 //sensors[0] -> PORTA.0 -> Temperature sensor
@@ -48,7 +49,7 @@ int main(void) {
             UART_write_text("V");       // Send initialization and AutoBaud success
             PIE1bits.RCIE = 1;          // Enable EUSART receive 
             PIE1bits.TXIE = 1;          // Enable EUSART transmit interrupt
-            should_autobaud = 0;         // AutoBaud succeeded so no longer needed
+            should_autobaud = 0;        // AutoBaud succeeded so no longer needed
         }
         
         //When one of the following errors occurred: recover by resetting
@@ -68,15 +69,15 @@ int main(void) {
     return (EXIT_SUCCESS);      
 }
 
-void default_handler(void){
-    UART_write_text("xy");
-}
-
-void temperature_handler(void){
+void default_handler(Sensor *sensor){
     
 }
 
-void switch_handler(void){
+void temperature_handler(Sensor *sensor){
+   // ADRES
+}
+
+void switch_handler(Sensor *sensor){
     should_autobaud = 1;
 }
 
@@ -200,8 +201,9 @@ void initialize_PIC(void){
 
 void initialize_sensors(void){
     for(int i = 0; i < SENSOR_COUNT; ++i){
-        sensors[i].port = &PORTA;
-        sensors[i].pin = i + 1;
+        sensors[i].index = i;
+        sensors[i].debounce.port = &PORTA;
+        sensors[i].debounce.pin = i;
         sensors[i].handler = default_handler;
     }
     
@@ -278,7 +280,7 @@ try:
 void interrupt ISR(void) {    
     int shouldDebounce = 0;
     
-    //Used as debounce
+    //Used as shared debounce resource
     if(PIR3bits.TMR6IF){
         T6CONbits.TMR6ON = 0;                                           //Disable TIMER6
         
@@ -292,10 +294,8 @@ void interrupt ISR(void) {
     //Analog/Digital conversion Interrupt flag handler
     //Triggers when an AD conversion is finished
     if(ADIF){
-        sensors[0].handler();
-        char str[15];
-        sprintf(str," %d", ADRES);
-        UART_write_text(str);                                           //Call the procedure UART_Write_Text with str as parameter
+        sensors[0].handler(&sensors[0]);
+        
         ADCON0bits.GO = 0;                                              //Toggle the Analog to Digital conversion module GO bit 
         ADIF = 0;                                                       //Clear the Analog to Digital conversion interrupt flag
     }

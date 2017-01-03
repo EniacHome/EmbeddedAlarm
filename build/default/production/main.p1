@@ -1,11 +1,11 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[v F2945 `(v ~T0 @X0 0 tf ]
-"11 sensor.h
-[s S368 :1 `uc 1 :1 `uc 1 ]
-[n S368 debounce_t should_debounce previous_state ]
-"6
-[s S367 `*uc 1 `uc 1 `*F2945 1 `S368 1 ]
-[n S367 sensor_t port pin handler debounce ]
+[v F2944 `(v ~T0 @X0 0 tf1`*S367 ]
+"10 sensor.h
+[s S368 :1 `uc 1 :1 `uc 1 :3 `uc 1 `*uc 1 ]
+[n S368 debounce_t should_debounce previous_state pin port ]
+"8
+[s S367 `uc 1 `*F2944 1 `S368 1 ]
+[n S367 sensor_t index handler debounce ]
 [p mainexit ]
 "23 main.c
 [v _initialize_PIC `(v ~T0 @X0 0 ef ]
@@ -13,7 +13,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _initialize_sensors `(v ~T0 @X0 0 ef ]
 "25
 [v _autoBaud `(v ~T0 @X0 0 ef ]
-"28
+"29
 [v _UART_write_text `(v ~T0 @X0 0 ef1`*uc ]
 "1304 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic16f1829.h
 [s S74 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -169,16 +169,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S342 . . . ]
 "6594
 [v _T6CONbits `VS342 ~T0 @X0 0 e@1054 ]
-"19 sensor.h
+"20 sensor.h
 [v _process_debounce `(v ~T0 @X0 0 ef1`*S367 ]
 "7754 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic16f1829.h
 [v _TMR6IF `Vb ~T0 @X0 0 e@155 ]
 "6892
 [v _ADIF `Vb ~T0 @X0 0 e@142 ]
-"194 D:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h
-[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
-"1852 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic16f1829.h
-[v _ADRES `Vus ~T0 @X0 0 e@155 ]
 "1902
 [s S102 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S102 . ADON GO_nDONE CHS0 CHS1 CHS2 CHS3 CHS4 ]
@@ -204,7 +200,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S305 . . . ]
 "5942
 [v _IOCAFbits `VS305 ~T0 @X0 0 e@915 ]
-"18 sensor.h
+"19 sensor.h
 [v _enable_debounce `(v ~T0 @X0 0 ef1`*S367 ]
 "7 config.h
 [p x FOSC=INTOSC ]
@@ -3136,16 +3132,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 193: extern __bit __powerdown;
 [; ;pic.h: 194: extern __bit __timeout;
 [; ;sensor.h: 6: typedef struct sensor_t{
-[; ;sensor.h: 7: unsigned char *port;
-[; ;sensor.h: 8: unsigned char pin;
-[; ;sensor.h: 9: void (*handler)(void);
-[; ;sensor.h: 11: struct debounce_t {
-[; ;sensor.h: 12: unsigned char should_debounce : 1;
-[; ;sensor.h: 13: unsigned char previous_state : 1;
-[; ;sensor.h: 14: } debounce;
-[; ;sensor.h: 15: } Sensor;
-[; ;sensor.h: 18: void enable_debounce(Sensor *sensor);
-[; ;sensor.h: 19: void process_debounce(Sensor *sensor);
+[; ;sensor.h: 7: unsigned char index;
+[; ;sensor.h: 8: void (*handler)(struct sensor_t *sensor);
+[; ;sensor.h: 10: struct debounce_t {
+[; ;sensor.h: 11: unsigned char should_debounce : 1;
+[; ;sensor.h: 12: unsigned char previous_state : 1;
+[; ;sensor.h: 13: unsigned char pin : 3;
+[; ;sensor.h: 14: unsigned char *port;
+[; ;sensor.h: 15: } debounce;
+[; ;sensor.h: 16: } Sensor;
+[; ;sensor.h: 19: void enable_debounce(Sensor *sensor);
+[; ;sensor.h: 20: void process_debounce(Sensor *sensor);
 [; ;__size_t.h: 4: typedef unsigned size_t;
 [; ;stdarg.h: 7: typedef void * va_list[1];
 [; ;stdarg.h: 10: extern void * __va_start(void);
@@ -3229,347 +3226,348 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 23: void initialize_PIC(void);
 [; ;main.c: 24: void initialize_sensors(void);
 [; ;main.c: 25: void autoBaud(void);
-[; ;main.c: 26: void default_handler(void);
-[; ;main.c: 27: void switch_handler(void);
-[; ;main.c: 28: void UART_write_text(char *text);
-[; ;main.c: 29: void UART_write(char date);
-"38 main.c
+[; ;main.c: 26: void default_handler(Sensor *sensor);
+[; ;main.c: 27: void temperature_handler(Sensor *sensor);
+[; ;main.c: 28: void switch_handler(Sensor *sensor);
+[; ;main.c: 29: void UART_write_text(char *text);
+[; ;main.c: 30: void UART_write(char data);
+"39 main.c
 [v _sensors `S367 ~T0 @X0 -> 6 `i e ]
-[; ;main.c: 38: Sensor sensors[6];
-"39
+[; ;main.c: 39: Sensor sensors[6];
+"40
 [v _should_autobaud `uc ~T0 @X0 1 e ]
 [i _should_autobaud
 -> -> 0 `i `uc
 ]
-[; ;main.c: 39: char should_autobaud = 0;
-"41
+[; ;main.c: 40: char should_autobaud = 0;
+"42
 [v _main `(i ~T0 @X0 1 ef ]
 {
-[; ;main.c: 41: int main(void) {
+[; ;main.c: 42: int main(void) {
 [e :U _main ]
 [f ]
-[; ;main.c: 42: initialize_PIC();
-"42
-[e ( _initialize_PIC ..  ]
-[; ;main.c: 43: initialize_sensors();
+[; ;main.c: 43: initialize_PIC();
 "43
+[e ( _initialize_PIC ..  ]
+[; ;main.c: 44: initialize_sensors();
+"44
 [e ( _initialize_sensors ..  ]
-[; ;main.c: 45: while(1){
-"45
+[; ;main.c: 46: while(1){
+"46
 [e :U 376 ]
 {
-[; ;main.c: 46: if(should_autobaud){
-"46
+[; ;main.c: 47: if(should_autobaud){
+"47
 [e $ ! != -> _should_autobaud `i -> -> -> 0 `i `uc `i 378  ]
 {
-[; ;main.c: 47: autoBaud();
-"47
-[e ( _autoBaud ..  ]
-[; ;main.c: 48: UART_write_text("V");
+[; ;main.c: 48: autoBaud();
 "48
-[e ( _UART_write_text (1 -> :s 1C `*uc ]
-[; ;main.c: 49: PIE1bits.RCIE = 1;
+[e ( _autoBaud ..  ]
+[; ;main.c: 49: UART_write_text("V");
 "49
-[e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
-[; ;main.c: 50: PIE1bits.TXIE = 1;
+[e ( _UART_write_text (1 -> :s 1C `*uc ]
+[; ;main.c: 50: PIE1bits.RCIE = 1;
 "50
-[e = . . _PIE1bits 0 4 -> -> 1 `i `uc ]
-[; ;main.c: 51: should_autobaud = 0;
+[e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
+[; ;main.c: 51: PIE1bits.TXIE = 1;
 "51
-[e = _should_autobaud -> -> 0 `i `uc ]
+[e = . . _PIE1bits 0 4 -> -> 1 `i `uc ]
+[; ;main.c: 52: should_autobaud = 0;
 "52
+[e = _should_autobaud -> -> 0 `i `uc ]
+"53
 }
 [e :U 378 ]
-[; ;main.c: 52: }
-[; ;main.c: 55: if(RCSTAbits.OERR)
-"55
-[e $ ! != -> . . _RCSTAbits 0 1 `i -> -> -> 0 `i `Vuc `i 379  ]
-[; ;main.c: 56: {
+[; ;main.c: 53: }
+[; ;main.c: 56: if(RCSTAbits.OERR)
 "56
-{
-[; ;main.c: 57: RCSTAbits.SPEN = 0;
+[e $ ! != -> . . _RCSTAbits 0 1 `i -> -> -> 0 `i `Vuc `i 379  ]
+[; ;main.c: 57: {
 "57
-[e = . . _RCSTAbits 0 7 -> -> 0 `i `uc ]
-[; ;main.c: 58: RCSTAbits.SPEN = 1;
+{
+[; ;main.c: 58: RCSTAbits.SPEN = 0;
 "58
-[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
+[e = . . _RCSTAbits 0 7 -> -> 0 `i `uc ]
+[; ;main.c: 59: RCSTAbits.SPEN = 1;
 "59
+[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
+"60
 }
 [e :U 379 ]
-[; ;main.c: 59: }
-[; ;main.c: 61: if(RCSTAbits.FERR)
-"61
-[e $ ! != -> . . _RCSTAbits 0 2 `i -> -> -> 0 `i `Vuc `i 380  ]
-[; ;main.c: 62: {
+[; ;main.c: 60: }
+[; ;main.c: 62: if(RCSTAbits.FERR)
 "62
-{
-[; ;main.c: 63: RCSTAbits.SPEN = 0;
+[e $ ! != -> . . _RCSTAbits 0 2 `i -> -> -> 0 `i `Vuc `i 380  ]
+[; ;main.c: 63: {
 "63
-[e = . . _RCSTAbits 0 7 -> -> 0 `i `uc ]
-[; ;main.c: 64: RCSTAbits.SPEN = 1;
+{
+[; ;main.c: 64: RCSTAbits.SPEN = 0;
 "64
-[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
+[e = . . _RCSTAbits 0 7 -> -> 0 `i `uc ]
+[; ;main.c: 65: RCSTAbits.SPEN = 1;
 "65
-}
-[e :U 380 ]
+[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
 "66
 }
+[e :U 380 ]
+"67
+}
 [e :U 375 ]
-"45
+"46
 [e $U 376  ]
 [e :U 377 ]
-[; ;main.c: 65: }
 [; ;main.c: 66: }
-[; ;main.c: 68: return (0);
-"68
+[; ;main.c: 67: }
+[; ;main.c: 69: return (0);
+"69
 [e ) -> 0 `i ]
 [e $UE 374  ]
-[; ;main.c: 69: }
-"69
+[; ;main.c: 70: }
+"70
 [e :UE 374 ]
 }
-"71
-[v _default_handler `(v ~T0 @X0 1 ef ]
-{
-[; ;main.c: 71: void default_handler(void){
-[e :U _default_handler ]
-[f ]
-[; ;main.c: 72: UART_write_text("xy");
 "72
-[e ( _UART_write_text (1 -> :s 2C `*uc ]
-[; ;main.c: 73: }
-"73
+[v _default_handler `(v ~T0 @X0 1 ef1`*S367 ]
+{
+[; ;main.c: 72: void default_handler(Sensor *sensor){
+[e :U _default_handler ]
+[v _sensor `*S367 ~T0 @X0 1 r1 ]
+[f ]
+[; ;main.c: 74: }
+"74
 [e :UE 381 ]
 }
-"75
-[v _temperature_handler `(v ~T0 @X0 1 ef ]
+"76
+[v _temperature_handler `(v ~T0 @X0 1 ef1`*S367 ]
 {
-[; ;main.c: 75: void temperature_handler(void){
+[; ;main.c: 76: void temperature_handler(Sensor *sensor){
 [e :U _temperature_handler ]
+[v _sensor `*S367 ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 77: }
-"77
+[; ;main.c: 78: }
+"78
 [e :UE 382 ]
 }
-"79
-[v _switch_handler `(v ~T0 @X0 1 ef ]
-{
-[; ;main.c: 79: void switch_handler(void){
-[e :U _switch_handler ]
-[f ]
-[; ;main.c: 80: should_autobaud = 1;
 "80
-[e = _should_autobaud -> -> 1 `i `uc ]
-[; ;main.c: 81: }
+[v _switch_handler `(v ~T0 @X0 1 ef1`*S367 ]
+{
+[; ;main.c: 80: void switch_handler(Sensor *sensor){
+[e :U _switch_handler ]
+[v _sensor `*S367 ~T0 @X0 1 r1 ]
+[f ]
+[; ;main.c: 81: should_autobaud = 1;
 "81
+[e = _should_autobaud -> -> 1 `i `uc ]
+[; ;main.c: 82: }
+"82
 [e :UE 383 ]
 }
-"83
+"84
 [v _UART_write `(v ~T0 @X0 1 ef1`uc ]
-"84
-{
-[; ;main.c: 83: void UART_write(char data)
-[; ;main.c: 84: {
-[e :U _UART_write ]
-"83
-[v _data `uc ~T0 @X0 1 r1 ]
-"84
-[f ]
-[; ;main.c: 85: while(!TRMT);
 "85
+{
+[; ;main.c: 84: void UART_write(char data)
+[; ;main.c: 85: {
+[e :U _UART_write ]
+"84
+[v _data `uc ~T0 @X0 1 r1 ]
+"85
+[f ]
+[; ;main.c: 86: while(!TRMT);
+"86
 [e $U 385  ]
 [e :U 386 ]
 [e :U 385 ]
 [e $ ! _TRMT 386  ]
 [e :U 387 ]
-[; ;main.c: 86: TXREG = data;
-"86
-[e = _TXREG _data ]
-[; ;main.c: 87: }
+[; ;main.c: 87: TXREG = data;
 "87
+[e = _TXREG _data ]
+[; ;main.c: 88: }
+"88
 [e :UE 384 ]
 }
-"89
+"90
 [v _UART_write_text `(v ~T0 @X0 1 ef1`*uc ]
-"90
-{
-[; ;main.c: 89: void UART_write_text(char *text)
-[; ;main.c: 90: {
-[e :U _UART_write_text ]
-"89
-[v _text `*uc ~T0 @X0 1 r1 ]
-"90
-[f ]
 "91
-[v _count `i ~T0 @X0 1 a ]
-[; ;main.c: 91: int count;
-[; ;main.c: 92: for(count = 0; text[count]!='\0'; count++)
+{
+[; ;main.c: 90: void UART_write_text(char *text)
+[; ;main.c: 91: {
+[e :U _UART_write_text ]
+"90
+[v _text `*uc ~T0 @X0 1 r1 ]
+"91
+[f ]
 "92
+[v _count `i ~T0 @X0 1 a ]
+[; ;main.c: 92: int count;
+[; ;main.c: 93: for(count = 0; text[count]!='\0'; count++)
+"93
 {
 [e = _count -> 0 `i ]
 [e $U 392  ]
-"93
-[e :U 389 ]
-[; ;main.c: 93: {
-{
-[; ;main.c: 94: UART_write(text[count]);
 "94
-[e ( _UART_write (1 *U + _text * -> _count `x -> -> # *U _text `i `x ]
+[e :U 389 ]
+[; ;main.c: 94: {
+{
+[; ;main.c: 95: UART_write(text[count]);
 "95
+[e ( _UART_write (1 *U + _text * -> _count `x -> -> # *U _text `i `x ]
+"96
 }
-"92
+"93
 [e ++ _count -> 1 `i ]
 [e :U 392 ]
 [e $ != -> *U + _text * -> _count `x -> -> # *U _text `i `x `ui -> 0 `ui 389  ]
 [e :U 390 ]
-"95
-}
-[; ;main.c: 95: }
-[; ;main.c: 96: }
 "96
+}
+[; ;main.c: 96: }
+[; ;main.c: 97: }
+"97
 [e :UE 388 ]
 }
-"98
+"99
 [v _initialize_PIC `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 98: void initialize_PIC(void){
+[; ;main.c: 99: void initialize_PIC(void){
 [e :U _initialize_PIC ]
 [f ]
-[; ;main.c: 104: OSCCON = 0b00111000;
-"104
+[; ;main.c: 105: OSCCON = 0b00111000;
+"105
 [e = _OSCCON -> -> 56 `i `uc ]
-[; ;main.c: 115: INTCON = 0b11001000;
-"115
+[; ;main.c: 116: INTCON = 0b11001000;
+"116
 [e = _INTCON -> -> 200 `i `uc ]
-[; ;main.c: 118: TRISCbits.TRISC0 = 0;
-"118
-[e = . . _TRISCbits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 119: TRISCbits.TRISC1 = 0;
+[; ;main.c: 119: TRISCbits.TRISC0 = 0;
 "119
-[e = . . _TRISCbits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 120: TRISCbits.TRISC2 = 0;
+[e = . . _TRISCbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 120: TRISCbits.TRISC1 = 0;
 "120
-[e = . . _TRISCbits 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 121: TRISCbits.TRISC3 = 0;
+[e = . . _TRISCbits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 121: TRISCbits.TRISC2 = 0;
 "121
-[e = . . _TRISCbits 0 3 -> -> 0 `i `uc ]
-[; ;main.c: 122: LATC = 0;
+[e = . . _TRISCbits 0 2 -> -> 0 `i `uc ]
+[; ;main.c: 122: TRISCbits.TRISC3 = 0;
 "122
+[e = . . _TRISCbits 0 3 -> -> 0 `i `uc ]
+[; ;main.c: 123: LATC = 0;
+"123
 [e = _LATC -> -> 0 `i `uc ]
-[; ;main.c: 125: TRISAbits.TRISA0 = 1;
-"125
-[e = . . _TRISAbits 0 0 -> -> 1 `i `uc ]
-[; ;main.c: 126: ANSELAbits.ANSA0 = 1;
+[; ;main.c: 126: TRISAbits.TRISA0 = 1;
 "126
+[e = . . _TRISAbits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 127: ANSELAbits.ANSA0 = 1;
+"127
 [e = . . _ANSELAbits 0 0 -> -> 1 `i `uc ]
-[; ;main.c: 129: TRISAbits.TRISA1 = 1;
-"129
-[e = . . _TRISAbits 0 1 -> -> 1 `i `uc ]
-[; ;main.c: 130: ANSELAbits.ANSA1 = 0;
+[; ;main.c: 130: TRISAbits.TRISA1 = 1;
 "130
+[e = . . _TRISAbits 0 1 -> -> 1 `i `uc ]
+[; ;main.c: 131: ANSELAbits.ANSA1 = 0;
+"131
 [e = . . _ANSELAbits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 133: TRISAbits.TRISA2 = 1;
-"133
-[e = . . _TRISAbits 0 2 -> -> 1 `i `uc ]
-[; ;main.c: 134: ANSELAbits.ANSA2 = 0;
+[; ;main.c: 134: TRISAbits.TRISA2 = 1;
 "134
+[e = . . _TRISAbits 0 2 -> -> 1 `i `uc ]
+[; ;main.c: 135: ANSELAbits.ANSA2 = 0;
+"135
 [e = . . _ANSELAbits 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 137: TRISAbits.TRISA3 = 1;
-"137
+[; ;main.c: 138: TRISAbits.TRISA3 = 1;
+"138
 [e = . . _TRISAbits 0 3 -> -> 1 `i `uc ]
-[; ;main.c: 140: TRISAbits.TRISA4 = 1;
-"140
-[e = . . _TRISAbits 0 4 -> -> 1 `i `uc ]
-[; ;main.c: 141: ANSELAbits.ANSA4 = 0;
+[; ;main.c: 141: TRISAbits.TRISA4 = 1;
 "141
+[e = . . _TRISAbits 0 4 -> -> 1 `i `uc ]
+[; ;main.c: 142: ANSELAbits.ANSA4 = 0;
+"142
 [e = . . _ANSELAbits 0 4 -> -> 0 `i `uc ]
-[; ;main.c: 144: TRISAbits.TRISA5 = 1;
-"144
+[; ;main.c: 145: TRISAbits.TRISA5 = 1;
+"145
 [e = . . _TRISAbits 0 5 -> -> 1 `i `uc ]
-[; ;main.c: 147: IOCANbits.IOCAN1 = 1;
-"147
-[e = . . _IOCANbits 0 1 -> -> 1 `i `uc ]
-[; ;main.c: 148: IOCANbits.IOCAN2 = 1;
+[; ;main.c: 148: IOCANbits.IOCAN1 = 1;
 "148
-[e = . . _IOCANbits 0 2 -> -> 1 `i `uc ]
-[; ;main.c: 149: IOCANbits.IOCAN4 = 1;
+[e = . . _IOCANbits 0 1 -> -> 1 `i `uc ]
+[; ;main.c: 149: IOCANbits.IOCAN2 = 1;
 "149
+[e = . . _IOCANbits 0 2 -> -> 1 `i `uc ]
+[; ;main.c: 150: IOCANbits.IOCAN4 = 1;
+"150
 [e = . . _IOCANbits 0 4 -> -> 1 `i `uc ]
-[; ;main.c: 152: IOCAPbits.IOCAP3 = 1;
-"152
-[e = . . _IOCAPbits 0 3 -> -> 1 `i `uc ]
-[; ;main.c: 153: IOCAPbits.IOCAP5 = 1;
+[; ;main.c: 153: IOCAPbits.IOCAP3 = 1;
 "153
+[e = . . _IOCAPbits 0 3 -> -> 1 `i `uc ]
+[; ;main.c: 154: IOCAPbits.IOCAP5 = 1;
+"154
 [e = . . _IOCAPbits 0 5 -> -> 1 `i `uc ]
-[; ;main.c: 160: ADCON0 = 0b00000001;
-"160
+[; ;main.c: 161: ADCON0 = 0b00000001;
+"161
 [e = _ADCON0 -> -> 1 `i `uc ]
-[; ;main.c: 167: ADCON1 = 0b10000000;
-"167
+[; ;main.c: 168: ADCON1 = 0b10000000;
+"168
 [e = _ADCON1 -> -> 128 `i `uc ]
-[; ;main.c: 169: PIR1bits.ADIF = 0;
-"169
-[e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
-[; ;main.c: 170: PIE1bits.ADIE = 1;
+[; ;main.c: 170: PIR1bits.ADIF = 0;
 "170
+[e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
+[; ;main.c: 171: PIE1bits.ADIE = 1;
+"171
 [e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
-[; ;main.c: 173: T2CON = 0b01111111;
-"173
-[e = _T2CON -> -> 127 `i `uc ]
-[; ;main.c: 174: PIE1bits.TMR2IE = 1;
+[; ;main.c: 174: T2CON = 0b01111111;
 "174
+[e = _T2CON -> -> 127 `i `uc ]
+[; ;main.c: 175: PIE1bits.TMR2IE = 1;
+"175
 [e = . . _PIE1bits 0 1 -> -> 1 `i `uc ]
-[; ;main.c: 181: T6CON = 0b00100000;
-"181
-[e = _T6CON -> -> 32 `i `uc ]
-[; ;main.c: 182: PR6 = 125;
+[; ;main.c: 182: T6CON = 0b00100000;
 "182
-[e = _PR6 -> -> 125 `i `uc ]
-[; ;main.c: 183: PIE3bits.TMR6IE = 1;
+[e = _T6CON -> -> 32 `i `uc ]
+[; ;main.c: 183: PR6 = 125;
 "183
+[e = _PR6 -> -> 125 `i `uc ]
+[; ;main.c: 184: PIE3bits.TMR6IE = 1;
+"184
 [e = . . _PIE3bits 0 3 -> -> 1 `i `uc ]
-[; ;main.c: 186: APFCON0bits.RXDTSEL = 1;
-"186
-[e = . . _APFCON0bits 0 4 -> -> 1 `i `uc ]
-[; ;main.c: 187: APFCON0bits.TXCKSEL = 1;
+[; ;main.c: 187: APFCON0bits.RXDTSEL = 1;
 "187
+[e = . . _APFCON0bits 0 4 -> -> 1 `i `uc ]
+[; ;main.c: 188: APFCON0bits.TXCKSEL = 1;
+"188
 [e = . . _APFCON0bits 0 1 -> -> 1 `i `uc ]
-[; ;main.c: 189: BRG16 = 1;
-"189
-[e = _BRG16 -> -> 1 `i `b ]
-[; ;main.c: 190: TXSTAbits.BRGH = 1;
+[; ;main.c: 190: BRG16 = 1;
 "190
-[e = . . _TXSTAbits 0 2 -> -> 1 `i `uc ]
-[; ;main.c: 191: SPBRG = 12;
+[e = _BRG16 -> -> 1 `i `b ]
+[; ;main.c: 191: TXSTAbits.BRGH = 1;
 "191
+[e = . . _TXSTAbits 0 2 -> -> 1 `i `uc ]
+[; ;main.c: 192: SPBRG = 12;
+"192
 [e = _SPBRG -> -> 12 `i `us ]
-[; ;main.c: 193: TXSTAbits.SYNC = 0;
-"193
-[e = . . _TXSTAbits 0 4 -> -> 0 `i `uc ]
-[; ;main.c: 194: RCSTAbits.SPEN = 1;
+[; ;main.c: 194: TXSTAbits.SYNC = 0;
 "194
-[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
-[; ;main.c: 195: TXSTAbits.TXEN = 1;
+[e = . . _TXSTAbits 0 4 -> -> 0 `i `uc ]
+[; ;main.c: 195: RCSTAbits.SPEN = 1;
 "195
-[e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
-[; ;main.c: 196: RCSTAbits.CREN = 1;
+[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
+[; ;main.c: 196: TXSTAbits.TXEN = 1;
 "196
+[e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
+[; ;main.c: 197: RCSTAbits.CREN = 1;
+"197
 [e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
-[; ;main.c: 198: PIE1bits.RCIE = 1;
-"198
-[e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
-[; ;main.c: 199: }
+[; ;main.c: 199: PIE1bits.RCIE = 1;
 "199
+[e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
+[; ;main.c: 200: }
+"200
 [e :UE 393 ]
 }
-"201
+"202
 [v _initialize_sensors `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 201: void initialize_sensors(void){
+[; ;main.c: 202: void initialize_sensors(void){
 [e :U _initialize_sensors ]
 [f ]
-[; ;main.c: 202: for(int i = 0; i < 6; ++i){
-"202
+[; ;main.c: 203: for(int i = 0; i < 6; ++i){
+"203
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
@@ -3577,250 +3575,253 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 396  ]
 [e :U 395 ]
 {
-[; ;main.c: 203: sensors[i].port = &PORTA;
-"203
-[e = . *U + &U _sensors * -> -> _i `ui `ux -> -> # *U &U _sensors `ui `ux 0 -> &U _PORTA `*uc ]
-[; ;main.c: 204: sensors[i].pin = i + 1;
+[; ;main.c: 204: sensors[i].index = i;
 "204
-[e = . *U + &U _sensors * -> -> _i `ui `ux -> -> # *U &U _sensors `ui `ux 1 -> + _i -> 1 `i `uc ]
-[; ;main.c: 205: sensors[i].handler = default_handler;
+[e = . *U + &U _sensors * -> -> _i `ui `ux -> -> # *U &U _sensors `ui `ux 0 -> _i `uc ]
+[; ;main.c: 205: sensors[i].debounce.port = &PORTA;
 "205
-[e = . *U + &U _sensors * -> -> _i `ui `ux -> -> # *U &U _sensors `ui `ux 2 &U _default_handler ]
+[e = . . *U + &U _sensors * -> -> _i `ui `ux -> -> # *U &U _sensors `ui `ux 2 3 -> &U _PORTA `*uc ]
+[; ;main.c: 206: sensors[i].debounce.pin = i;
 "206
+[e = . . *U + &U _sensors * -> -> _i `ui `ux -> -> # *U &U _sensors `ui `ux 2 2 -> _i `uc ]
+[; ;main.c: 207: sensors[i].handler = default_handler;
+"207
+[e = . *U + &U _sensors * -> -> _i `ui `ux -> -> # *U &U _sensors `ui `ux 1 &U _default_handler ]
+"208
 }
-"202
+"203
 [e =+ _i -> 1 `i ]
 [e $ < _i -> 6 `i 395  ]
 [e :U 396 ]
-"206
+"208
 }
-[; ;main.c: 206: }
-[; ;main.c: 209: sensors[0].handler = temperature_handler;
-"209
-[e = . *U + &U _sensors * -> -> -> 0 `i `ui `ux -> -> # *U &U _sensors `ui `ux 2 &U _temperature_handler ]
-[; ;main.c: 212: sensors[2].handler = switch_handler;
-"212
-[e = . *U + &U _sensors * -> -> -> 2 `i `ui `ux -> -> # *U &U _sensors `ui `ux 2 &U _switch_handler ]
-[; ;main.c: 213: }
-"213
+[; ;main.c: 208: }
+[; ;main.c: 211: sensors[0].handler = temperature_handler;
+"211
+[e = . *U + &U _sensors * -> -> -> 0 `i `ui `ux -> -> # *U &U _sensors `ui `ux 1 &U _temperature_handler ]
+[; ;main.c: 214: sensors[2].handler = switch_handler;
+"214
+[e = . *U + &U _sensors * -> -> -> 2 `i `ui `ux -> -> # *U &U _sensors `ui `ux 1 &U _switch_handler ]
+[; ;main.c: 215: }
+"215
 [e :UE 394 ]
 }
-"215
+"217
 [v _autoBaud `(v ~T0 @X0 1 ef ]
-"216
+"218
 {
-[; ;main.c: 215: void autoBaud(void)
-[; ;main.c: 216: {
+[; ;main.c: 217: void autoBaud(void)
+[; ;main.c: 218: {
 [e :U _autoBaud ]
 [f ]
-"217
-[v _discard `uc ~T0 @X0 1 a ]
-"218
-[v _index `i ~T0 @X0 1 a ]
-[; ;main.c: 217: char discard;
-[; ;main.c: 218: int index = 0;
-[e = _index -> 0 `i ]
 "219
-[v _sync_count `i ~T0 @X0 1 a ]
-[; ;main.c: 219: int sync_count;
-[; ;main.c: 221: try:
+[v _discard `uc ~T0 @X0 1 a ]
+"220
+[v _index `i ~T0 @X0 1 a ]
+[; ;main.c: 219: char discard;
+[; ;main.c: 220: int index = 0;
+[e = _index -> 0 `i ]
 "221
+[v _sync_count `i ~T0 @X0 1 a ]
+[; ;main.c: 221: int sync_count;
+[; ;main.c: 223: try:
+"223
 [e :U 399 ]
-[; ;main.c: 223: switch(index)
-"223
-[e $U 401  ]
-[; ;main.c: 224: {
-"224
-{
-[; ;main.c: 225: case 0:
+[; ;main.c: 225: switch(index)
 "225
-[e :U 402 ]
-[; ;main.c: 226: BAUDCONbits.BRG16 = 0;
+[e $U 401  ]
+[; ;main.c: 226: {
 "226
-[e = . . _BAUDCONbits 0 3 -> -> 0 `i `uc ]
-[; ;main.c: 227: TXSTAbits.BRGH = 0;
+{
+[; ;main.c: 227: case 0:
 "227
-[e = . . _TXSTAbits 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 228: break;
+[e :U 402 ]
+[; ;main.c: 228: BAUDCONbits.BRG16 = 0;
 "228
-[e $U 400  ]
-[; ;main.c: 229: case 1:
-"229
-[e :U 403 ]
-[; ;main.c: 230: BAUDCONbits.BRG16 = 0;
-"230
 [e = . . _BAUDCONbits 0 3 -> -> 0 `i `uc ]
-[; ;main.c: 231: TXSTAbits.BRGH = 1;
-"231
-[e = . . _TXSTAbits 0 2 -> -> 1 `i `uc ]
-[; ;main.c: 232: break;
-"232
-[e $U 400  ]
-[; ;main.c: 233: case 2:
-"233
-[e :U 404 ]
-[; ;main.c: 234: BAUDCONbits.BRG16 = 1;
-"234
-[e = . . _BAUDCONbits 0 3 -> -> 1 `i `uc ]
-[; ;main.c: 235: TXSTAbits.BRGH = 0;
-"235
+[; ;main.c: 229: TXSTAbits.BRGH = 0;
+"229
 [e = . . _TXSTAbits 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 236: break;
-"236
+[; ;main.c: 230: break;
+"230
 [e $U 400  ]
-[; ;main.c: 237: case 3:
-"237
-[e :U 405 ]
-[; ;main.c: 238: BAUDCONbits.BRG16 = 1;
-"238
-[e = . . _BAUDCONbits 0 3 -> -> 1 `i `uc ]
-[; ;main.c: 239: TXSTAbits.BRGH = 1;
-"239
+[; ;main.c: 231: case 1:
+"231
+[e :U 403 ]
+[; ;main.c: 232: BAUDCONbits.BRG16 = 0;
+"232
+[e = . . _BAUDCONbits 0 3 -> -> 0 `i `uc ]
+[; ;main.c: 233: TXSTAbits.BRGH = 1;
+"233
 [e = . . _TXSTAbits 0 2 -> -> 1 `i `uc ]
-[; ;main.c: 240: break;
+[; ;main.c: 234: break;
+"234
+[e $U 400  ]
+[; ;main.c: 235: case 2:
+"235
+[e :U 404 ]
+[; ;main.c: 236: BAUDCONbits.BRG16 = 1;
+"236
+[e = . . _BAUDCONbits 0 3 -> -> 1 `i `uc ]
+[; ;main.c: 237: TXSTAbits.BRGH = 0;
+"237
+[e = . . _TXSTAbits 0 2 -> -> 0 `i `uc ]
+[; ;main.c: 238: break;
+"238
+[e $U 400  ]
+[; ;main.c: 239: case 3:
+"239
+[e :U 405 ]
+[; ;main.c: 240: BAUDCONbits.BRG16 = 1;
 "240
-[e $U 400  ]
+[e = . . _BAUDCONbits 0 3 -> -> 1 `i `uc ]
+[; ;main.c: 241: TXSTAbits.BRGH = 1;
 "241
-}
-[; ;main.c: 241: }
+[e = . . _TXSTAbits 0 2 -> -> 1 `i `uc ]
+[; ;main.c: 242: break;
+"242
 [e $U 400  ]
-"223
+"243
+}
+[; ;main.c: 243: }
+[e $U 400  ]
+"225
 [e :U 401 ]
 [e [\ _index , $ -> 0 `i 402
  , $ -> 1 `i 403
  , $ -> 2 `i 404
  , $ -> 3 `i 405
  400 ]
-"241
-[e :U 400 ]
-[; ;main.c: 243: BAUDCONbits.ABDEN = 1;
 "243
+[e :U 400 ]
+[; ;main.c: 245: BAUDCONbits.ABDEN = 1;
+"245
 [e = . . _BAUDCONbits 0 0 -> -> 1 `i `uc ]
-[; ;main.c: 244: while(!PIR1bits.RCIF);
-"244
+[; ;main.c: 246: while(!PIR1bits.RCIF);
+"246
 [e $U 406  ]
 [e :U 407 ]
 [e :U 406 ]
 [e $ ! != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 407  ]
 [e :U 408 ]
-[; ;main.c: 245: discard = RCREG;
-"245
-[e = _discard _RCREG ]
-[; ;main.c: 247: if(SPBRG != 0)
+[; ;main.c: 247: discard = RCREG;
 "247
-[e $ ! != -> _SPBRG `ui -> -> 0 `i `ui 409  ]
-[; ;main.c: 248: {
-"248
-{
-[; ;main.c: 249: --SPBRG;
+[e = _discard _RCREG ]
+[; ;main.c: 249: if(SPBRG != 0)
 "249
-[e =- _SPBRG -> -> 1 `i `us ]
+[e $ ! != -> _SPBRG `ui -> -> 0 `i `ui 409  ]
+[; ;main.c: 250: {
 "250
+{
+[; ;main.c: 251: --SPBRG;
+"251
+[e =- _SPBRG -> -> 1 `i `us ]
+"252
 }
 [e :U 409 ]
-[; ;main.c: 250: }
-[; ;main.c: 253: if(BAUDCONbits.ABDOVF)
-"253
-[e $ ! != -> . . _BAUDCONbits 0 7 `i -> -> -> 0 `i `Vuc `i 410  ]
-[; ;main.c: 254: {
-"254
-{
-[; ;main.c: 255: BAUDCONbits.ABDOVF = 0;
+[; ;main.c: 252: }
+[; ;main.c: 255: if(BAUDCONbits.ABDOVF)
 "255
-[e = . . _BAUDCONbits 0 7 -> -> 0 `i `uc ]
-[; ;main.c: 256: goto try;
+[e $ ! != -> . . _BAUDCONbits 0 7 `i -> -> -> 0 `i `Vuc `i 410  ]
+[; ;main.c: 256: {
 "256
-[e $U 399  ]
+{
+[; ;main.c: 257: BAUDCONbits.ABDOVF = 0;
 "257
+[e = . . _BAUDCONbits 0 7 -> -> 0 `i `uc ]
+[; ;main.c: 258: goto try;
+"258
+[e $U 399  ]
+"259
 }
 [e :U 410 ]
-[; ;main.c: 257: }
-[; ;main.c: 258: if(!BAUDCONbits.BRG16 && SPBRGH)
-"258
-[e $ ! && ! != -> . . _BAUDCONbits 0 3 `i -> -> -> 0 `i `Vuc `i != -> _SPBRGH `i -> -> -> 0 `i `Vuc `i 411  ]
-[; ;main.c: 259: {
-"259
-{
-[; ;main.c: 260: goto try;
+[; ;main.c: 259: }
+[; ;main.c: 260: if(!BAUDCONbits.BRG16 && SPBRGH)
 "260
-[e $U 399  ]
+[e $ ! && ! != -> . . _BAUDCONbits 0 3 `i -> -> -> 0 `i `Vuc `i != -> _SPBRGH `i -> -> -> 0 `i `Vuc `i 411  ]
+[; ;main.c: 261: {
 "261
+{
+[; ;main.c: 262: goto try;
+"262
+[e $U 399  ]
+"263
 }
 [e :U 411 ]
-[; ;main.c: 261: }
-[; ;main.c: 264: for (sync_count=0; sync_count < 2; ++sync_count)
-"264
+[; ;main.c: 263: }
+[; ;main.c: 266: for (sync_count=0; sync_count < 2; ++sync_count)
+"266
 {
 [e = _sync_count -> 0 `i ]
 [e $ < _sync_count -> 2 `i 412  ]
 [e $U 413  ]
-"265
+"267
 [e :U 412 ]
-[; ;main.c: 265: {
+[; ;main.c: 267: {
 {
-[; ;main.c: 266: while(!PIR1bits.RCIF);
-"266
+[; ;main.c: 268: while(!PIR1bits.RCIF);
+"268
 [e $U 415  ]
 [e :U 416 ]
 [e :U 415 ]
 [e $ ! != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 416  ]
 [e :U 417 ]
-[; ;main.c: 267: if(RCREG != 'U')
-"267
-[e $ ! != -> _RCREG `ui -> 85 `ui 418  ]
-[; ;main.c: 268: {
-"268
-{
-[; ;main.c: 269: ++index;
+[; ;main.c: 269: if(RCREG != 'U')
 "269
-[e =+ _index -> 1 `i ]
-[; ;main.c: 270: if(index > 3)
+[e $ ! != -> _RCREG `ui -> 85 `ui 418  ]
+[; ;main.c: 270: {
 "270
-[e $ ! > _index -> 3 `i 419  ]
-[; ;main.c: 271: index = 0;
+{
+[; ;main.c: 271: ++index;
 "271
+[e =+ _index -> 1 `i ]
+[; ;main.c: 272: if(index > 3)
+"272
+[e $ ! > _index -> 3 `i 419  ]
+[; ;main.c: 273: index = 0;
+"273
 [e = _index -> 0 `i ]
 [e :U 419 ]
-[; ;main.c: 272: goto try;
-"272
+[; ;main.c: 274: goto try;
+"274
 [e $U 399  ]
-"273
+"275
 }
 [e :U 418 ]
-"274
+"276
 }
-"264
+"266
 [e =+ _sync_count -> 1 `i ]
 [e $ < _sync_count -> 2 `i 412  ]
 [e :U 413 ]
-"274
+"276
 }
-[; ;main.c: 273: }
-[; ;main.c: 274: }
 [; ;main.c: 275: }
-"275
+[; ;main.c: 276: }
+[; ;main.c: 277: }
+"277
 [e :UE 398 ]
 }
-[v F3176 `(v ~T0 @X0 1 tf ]
-"278
-[v _ISR `IF3176 ~T0 @X0 1 e ]
+[v F3178 `(v ~T0 @X0 1 tf ]
+"280
+[v _ISR `IF3178 ~T0 @X0 1 e ]
 {
-[; ;main.c: 278: void interrupt ISR(void) {
+[; ;main.c: 280: void interrupt ISR(void) {
 [e :U _ISR ]
 [f ]
-"279
+"281
 [v _shouldDebounce `i ~T0 @X0 1 a ]
-[; ;main.c: 279: int shouldDebounce = 0;
+[; ;main.c: 281: int shouldDebounce = 0;
 [e = _shouldDebounce -> 0 `i ]
-[; ;main.c: 282: if(PIR3bits.TMR6IF){
-"282
+[; ;main.c: 284: if(PIR3bits.TMR6IF){
+"284
 [e $ ! != -> . . _PIR3bits 0 3 `i -> -> -> 0 `i `Vuc `i 421  ]
 {
-[; ;main.c: 283: T6CONbits.TMR6ON = 0;
-"283
-[e = . . _T6CONbits 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 285: for(int i = 0; i < 6; ++i){
+[; ;main.c: 285: T6CONbits.TMR6ON = 0;
 "285
+[e = . . _T6CONbits 0 2 -> -> 0 `i `uc ]
+[; ;main.c: 287: for(int i = 0; i < 6; ++i){
+"287
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
@@ -3828,41 +3829,32 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 423  ]
 [e :U 422 ]
 {
-[; ;main.c: 286: process_debounce(&sensors[i]);
-"286
+[; ;main.c: 288: process_debounce(&sensors[i]);
+"288
 [e ( _process_debounce (1 &U *U + &U _sensors * -> -> _i `ui `ux -> -> # *U &U _sensors `ui `ux ]
-"287
+"289
 }
-"285
+"287
 [e =+ _i -> 1 `i ]
 [e $ < _i -> 6 `i 422  ]
 [e :U 423 ]
-"287
-}
-[; ;main.c: 287: }
-[; ;main.c: 289: TMR6IF = 0;
 "289
+}
+[; ;main.c: 289: }
+[; ;main.c: 291: TMR6IF = 0;
+"291
 [e = _TMR6IF -> -> 0 `i `b ]
-"290
+"292
 }
 [e :U 421 ]
-[; ;main.c: 290: }
-[; ;main.c: 294: if(ADIF){
-"294
+[; ;main.c: 292: }
+[; ;main.c: 296: if(ADIF){
+"296
 [e $ ! _ADIF 425  ]
 {
-[; ;main.c: 295: sensors[0].handler();
-"295
-[e ( *U . *U + &U _sensors * -> -> -> 0 `i `ui `ux -> -> # *U &U _sensors `ui `ux 2 ..  ]
-"296
-[v _str `uc ~T0 @X0 -> 15 `i a ]
-[; ;main.c: 296: char str[15];
-[; ;main.c: 297: sprintf(str," %d", ADRES);
+[; ;main.c: 297: sensors[0].handler(&sensors[0]);
 "297
-[e ( _sprintf (1 , (. , &U _str :s 3C -> _ADRES `i ]
-[; ;main.c: 298: UART_write_text(str);
-"298
-[e ( _UART_write_text (1 &U _str ]
+[e ( *U . *U + &U _sensors * -> -> -> 0 `i `ui `ux -> -> # *U &U _sensors `ui `ux 1 (1 &U *U + &U _sensors * -> -> -> 0 `i `ui `ux -> -> # *U &U _sensors `ui `ux ]
 [; ;main.c: 299: ADCON0bits.GO = 0;
 "299
 [e = . . _ADCON0bits 2 1 -> -> 0 `i `uc ]
@@ -4002,7 +3994,5 @@ Version 3.2 HI-TECH Software Intermediate Code
 "354
 [e :UE 420 ]
 }
-[p f _sprintf 8388736 ]
-[a 2C 120 121 0 ]
-[a 3C 32 37 100 0 ]
 [a 1C 86 0 ]
+
